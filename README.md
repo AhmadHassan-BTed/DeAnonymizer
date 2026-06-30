@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🛠️ DeAnonymizer
+#  DeAnonymizer
 ### *Professional Intelligence & Vulnerability Diagnostic Framework*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ff41.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -15,7 +15,7 @@
 *A high-fidelity cybersecurity laboratory designed for diagnostic telemetry, advanced fingerprinting, and browser security boundary research.*
 </div>
 
-## 🏗️ Architecture Overview
+##  Architecture Overview
 
 The toolkit is built on a **Zero-Coupling Dynamic Plugin Architecture**. The core engine remains entirely agnostic of individual module logic, discovering and loading tools at runtime via a centralized manifest.
 
@@ -36,7 +36,7 @@ graph TD
 
 ---
 
-## 🚦 Threat Escalation Hierarchy
+##  Threat Escalation Hierarchy
 
 Tools are categorized into four distinct levels, reflecting the severity of information exposure.
 
@@ -49,7 +49,7 @@ Tools are categorized into four distinct levels, reflecting the severity of info
 
 ---
 
-## 🧪 System Workflow & Data Flow
+##  System Workflow & Data Flow
 
 When a module is executed, it follows a strict lifecycle from initialization to exfiltration.
 
@@ -71,7 +71,7 @@ sequenceDiagram
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```text
 Pinpoint-Location-Tracker/
@@ -93,7 +93,7 @@ Pinpoint-Location-Tracker/
 
 ---
 
-## 🛠️ Internal Module Structure
+##  Internal Module Structure
 
 Every module must adhere to a strict interface to ensure 100% cohesion within the framework.
 
@@ -124,7 +124,7 @@ export default {
 
 ---
 
-## 🚀 Development & Contribution
+##  Development & Contribution
 
 The repository is maintained with a focus on engineering excellence. Contributors are encouraged to expand the toolkit by implementing new diagnostic modules.
 
