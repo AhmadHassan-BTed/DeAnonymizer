@@ -3,11 +3,14 @@
  * Zero Coupling // High Cohesion
  */
 
+import { ExecutionLogger } from './logger.js';
+
 export const PinpointEngine = {
     modules: [],
     
     async bootstrap() {
         try {
+            await ExecutionLogger.init();
             // Discover modules from manifest
             const response = await fetch('./src/config/modules.json');
             const { active_modules } = await response.json();
@@ -103,6 +106,7 @@ export const PinpointEngine = {
         if (field) field.innerText = ">> INITIALIZING_DYNAMIC_MODULE...\n>> PROBING_VECTORS...";
         try {
             const data = await mod.run();
+            await ExecutionLogger.log(mod.id, mod.level, data);
             if (data.status === 'NOT_IMPLEMENTED') {
                 if (field) field.innerText = `>> EXECUTION_HALTED\n>> STATUS: ${data.status}\n>> REASON: ${data.message}`;
             } else {
@@ -110,6 +114,7 @@ export const PinpointEngine = {
             }
             return data;
         } catch (error) {
+            await ExecutionLogger.log(mod.id, mod.level, { error: error.message });
             if (field) field.innerText = ">> EXECUTION_TERMINATED\n>> " + error.message;
             return { error: error.message };
         }
