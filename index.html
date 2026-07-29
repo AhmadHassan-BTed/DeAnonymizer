@@ -39,32 +39,42 @@
             <p style="font-size: 10px; opacity: 0.5; margin-top: 10px;">STEALTH_EXFILTRATION_SUITE // BY AHMAD HASSAN (B-TED)</p>
         </div>
 
-        <button id="exfil-trigger" class="btn-main">INITIALIZE_FULL_SPECTRUM_SCAN</button>
+        <!-- Primary Top Action: Generate & Download Safe Capability Report -->
+        <button id="download-report" class="btn-main" style="padding: 24px; font-size: 16px; border-color: #ffcc00; color: #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);">
+            DOWNLOAD_INTELLIGENCE_REPORT
+        </button>
+        <p style="font-size: 11px; text-align: center; opacity: 0.7; margin-top: 8px; margin-bottom: 25px; color: #ffcc00;">
+            Non-intrusive Audit: Generates local capability report without triggering visual popups or overlays.
+        </p>
 
+        <!-- Status Log Output -->
         <div id="log" class="status-log">
             >> SYSTEM_READY...<br>
             >> AWAITING_OPERATOR_INPUT...
         </div>
 
-        <div id="payload-container" style="display:none; margin-top: 30px;">
-            <p style="font-size: 10px; color: #fff;">INTELLIGENCE_REPORT_READY:</p>
-            <button id="download-report" class="btn-main" style="border-color: #ffcc00; color: #ffcc00;">DOWNLOAD_UNIFIED_PAYLOAD</button>
-        </div>
-        
-        <div style="margin-top: 50px; text-align: center;">
+        <!-- Secondary Lower Actions: Full Interactive Vector Executions -->
+        <div style="margin-top: 35px; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <button id="exfil-trigger" class="btn-main" style="font-size: 12px; padding: 14px; opacity: 0.85; border-color: var(--cyber-green);">
+                RUN_FULL_INTERACTIVE_VECTORS (TRIGGERS OVERLAYS/POPUPS)
+            </button>
             <a href="debug.html" style="
+                display: block;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
                 color: var(--cyber-green); 
                 text-decoration: none; 
                 font-size: 11px; 
                 border: 1px solid rgba(0, 255, 65, 0.3); 
-                padding: 10px 25px; 
+                padding: 12px 25px; 
                 letter-spacing: 3px; 
                 transition: 0.3s;
                 text-transform: uppercase;
                 font-weight: bold;
             " onmouseover="this.style.background='rgba(0, 255, 65, 0.05)'; this.style.borderColor='var(--cyber-green)'" 
                onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(0, 255, 65, 0.3)'">
-                SWITCH_TO_CONSOLE_MODE
+                OPEN_INTERACTIVE_CONSOLE_MODE
             </a>
         </div>
     </div>
@@ -73,8 +83,8 @@
         import { PinpointEngine } from './src/core/engine.js';
         
         const log = document.getElementById('log');
+        const downloadBtn = document.getElementById('download-report');
         const trigger = document.getElementById('exfil-trigger');
-        const payloadContainer = document.getElementById('payload-container');
         let unifiedData = null;
 
         const writeLog = (msg) => {
@@ -82,32 +92,46 @@
             log.scrollTop = log.scrollHeight;
         };
 
+        // Primary Button: Non-intrusive Audit & Instant Download
+        downloadBtn.onclick = async () => {
+            downloadBtn.disabled = true;
+            downloadBtn.innerText = "GENERATING_AUDIT_REPORT...";
+            writeLog("BOOTSTRAPPING_DYNAMIC_ENGINE...");
+            
+            await PinpointEngine.bootstrap();
+            writeLog(`DISCOVERED_${PinpointEngine.modules.length}_AUDIT_VECTORS`);
+            
+            writeLog("COLLECTING_NON_INTRUSIVE_CAPABILITY_DATA...");
+            unifiedData = await PinpointEngine.runAllNonIntrusive();
+            
+            writeLog("AUDIT_REPORT_GENERATED");
+            const blob = new Blob([JSON.stringify(unifiedData, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'SilentSniffer_Capability_Report.json';
+            a.click();
+            
+            downloadBtn.disabled = false;
+            downloadBtn.innerText = "DOWNLOAD_INTELLIGENCE_REPORT";
+            writeLog("REPORT_DOWNLOADED_SUCCESSFULLY");
+        };
+
+        // Secondary Button: Interactive Vector Execution with Popups/Overlays
         trigger.onclick = async () => {
             trigger.disabled = true;
-            trigger.innerText = "EXECUTING_PAYLOADS...";
+            trigger.innerText = "EXECUTING_INTERACTIVE_PAYLOADS...";
             writeLog("BOOTSTRAPPING_DYNAMIC_ENGINE...");
             
             await PinpointEngine.bootstrap();
             writeLog(`DISCOVERED_${PinpointEngine.modules.length}_ACTIVE_VECTORS`);
             
-            writeLog("COMMENCING_PARALLEL_EXTRACTION...");
+            writeLog("COMMENCING_INTERACTIVE_VECTOR_EXECUTION...");
             unifiedData = await PinpointEngine.runAll();
             
-            writeLog("AGGREGATION_COMPLETE");
-            writeLog("UNIFIED_INTELLIGENCE_PAYLOAD_GENERATED");
-            
-            payloadContainer.style.display = 'block';
-            trigger.innerText = "SCAN_COMPLETE";
-        };
-
-        document.getElementById('download-report').onclick = () => {
-            const blob = new Blob([JSON.stringify(unifiedData, null, 2)], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'SilentSniffer_Intelligence_Report.json';
-            a.click();
-            writeLog("PAYLOAD_EXFILTRATED_SUCCESSFULLY");
+            writeLog("INTERACTIVE_EXTRACTION_COMPLETE");
+            trigger.disabled = false;
+            trigger.innerText = "RUN_FULL_INTERACTIVE_VECTORS (TRIGGERS OVERLAYS/POPUPS)";
         };
     </script>
 </body>
