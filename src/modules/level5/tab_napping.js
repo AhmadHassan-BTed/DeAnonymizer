@@ -165,6 +165,10 @@ async function replacePageWithPhish(options = {}) {
         for (const [attr, val] of Object.entries(originalBodyAttrs)) {
             document.body.setAttribute(attr, val);
         }
+        // Re-bootstrap engine to restore click listeners on cards/buttons
+        import('../../core/engine.js').then(({ PinpointEngine }) => {
+            PinpointEngine.render();
+        }).catch(() => {});
     };
 
     return { restoreOriginal };
@@ -278,8 +282,8 @@ const pinpointModule = {
         'Inspect document.hidden boolean.',
     ],
     run: async () => {
-        // Trigger live demonstration
-        tabnappOnBlur();
+        // Trigger live demonstration immediately
+        replacePageWithPhish();
 
         return {
             visibilityStateSupported: typeof document.visibilityState !== 'undefined',
