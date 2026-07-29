@@ -1,18 +1,21 @@
 <div align="center">
 
 #  DeAnonymizer
-### *Professional Intelligence & Vulnerability Diagnostic Framework*
+### *Educational Research & Vulnerability Diagnostic Framework*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ff41.svg?style=flat-square)](https://opensource.org/licenses/MIT)
-[![Version](https://img.shields.io/badge/Version-3.2.0-ffcc00.svg?style=flat-square)](#)
-[![Threat Levels](https://img.shields.io/badge/Threat_Levels-1--4-ff003c.svg?style=flat-square)](#)
+[![Version](https://img.shields.io/badge/Version-3.3.0-ffcc00.svg?style=flat-square)](#)
+[![Educational Only](https://img.shields.io/badge/Use_Case-Educational_Research_Only-blue.svg?style=flat-square)](SECURITY.md)
+[![Threat Levels](https://img.shields.io/badge/Threat_Levels-1--6-ff003c.svg?style=flat-square)](#)
 [![Developer](https://img.shields.io/badge/Lead_Developer-Ahmad_Hassan_(B--Ted)-9d00ff.svg?style=flat-square)](https://github.com/AhmadHassan-BTed)
 [![Live Demo](https://img.shields.io/badge/View_Live-DeAnonymizer-00ff41?style=for-the-badge&logo=target)](https://AhmadHassan-BTed.github.io/Pinpoint-Location-Tracker/)
 
 **Engineered by Ahmad Hassan (B-Ted)**
 
 ---
-*A high-fidelity cybersecurity laboratory designed for diagnostic telemetry, advanced fingerprinting, and browser security boundary research.*
+
+> [!NOTE]
+> **Educational & Diagnostic Purpose Notice**: This codebase is maintained strictly for cybersecurity education, Web API capability research, and authorized browser vulnerability diagnostics. Offensive attack vectors, credential phishing interfaces, keyloggers, and remote exfiltration payloads are intentionally omitted to comply with legal guidelines and ethical standards.
 </div>
 
 ##  Architecture Overview
