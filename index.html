@@ -40,12 +40,21 @@
             <p style="font-size: 10px; opacity: 0.5; margin-top: 10px;">STEALTH_EXFILTRATION_SUITE // BY AHMAD HASSAN (B-TED)</p>
         </div>
 
-        <!-- Primary Top Action: Generate & Download Safe Capability Report -->
-        <button id="download-report" class="btn-main" style="padding: 24px; font-size: 16px; border-color: #ffcc00; color: #ffcc00; box-shadow: 0 0 15px rgba(255, 204, 0, 0.2);">
-            DOWNLOAD_INTELLIGENCE_REPORT
-        </button>
-        <p style="font-size: 11px; text-align: center; opacity: 0.7; margin-top: 8px; margin-bottom: 25px; color: #ffcc00;">
-            Non-intrusive Audit: Generates local capability report without triggering visual popups or overlays.
+        <!-- Primary Main Action: Open Interactive Console Mode -->
+        <a href="debug.html" class="btn-main" style="
+            text-decoration: none; 
+            text-align: center;
+            box-sizing: border-box;
+            padding: 24px; 
+            font-size: 16px; 
+            border-color: var(--cyber-green);
+            color: var(--cyber-green);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.2);
+        ">
+            OPEN_INTERACTIVE_CONSOLE_MODE
+        </a>
+        <p style="font-size: 11px; text-align: center; opacity: 0.7; margin-top: 8px; margin-bottom: 25px; color: var(--cyber-green);">
+            Main Workspace: Access full threat matrix, module details, and individual vector controls.
         </p>
 
         <!-- Status Log Output -->
@@ -54,23 +63,14 @@
             >> AWAITING_OPERATOR_INPUT...
         </div>
 
-        <!-- Secondary Lower Actions: Full Interactive Vector Executions -->
+        <!-- Secondary Lower Actions -->
         <div style="margin-top: 35px; display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <button id="download-report" class="btn-main" style="font-size: 12px; padding: 14px; border-color: #ffcc00; color: #ffcc00;">
+                DOWNLOAD_INTELLIGENCE_REPORT (NON-INTRUSIVE AUDIT)
+            </button>
             <button id="exfil-trigger" class="btn-main" style="font-size: 12px; padding: 14px; opacity: 0.85; border-color: var(--cyber-green);">
                 RUN_FULL_INTERACTIVE_VECTORS (TRIGGERS OVERLAYS/POPUPS)
             </button>
-            <a href="debug.html" class="btn-main" style="
-                text-decoration: none; 
-                text-align: center;
-                box-sizing: border-box;
-                font-size: 11px; 
-                padding: 12px 25px; 
-                letter-spacing: 3px; 
-                border-color: rgba(0, 255, 65, 0.4);
-                color: var(--cyber-green);
-            ">
-                OPEN_INTERACTIVE_CONSOLE_MODE
-            </a>
         </div>
     </div>
 
@@ -108,7 +108,7 @@
             a.click();
             
             downloadBtn.disabled = false;
-            downloadBtn.innerText = "DOWNLOAD_INTELLIGENCE_REPORT";
+            downloadBtn.innerText = "DOWNLOAD_INTELLIGENCE_REPORT (NON-INTRUSIVE AUDIT)";
             writeLog("REPORT_DOWNLOADED_SUCCESSFULLY");
         };
 
