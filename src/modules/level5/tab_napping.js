@@ -95,7 +95,7 @@ async function replacePageWithPhish(options = {}) {
       <div style="max-width: 400px; width: 100%; padding: 48px 40px 36px; background: white;
         border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
         <div style="margin-bottom: 24px; font-size: 32px; font-weight: 500; color: ${color};">
-          ${template.logo || '🔑'}
+          ${template.logo || '[KEY]'}
         </div>
         <h1 style="font-size: 24px; font-weight: 400; margin:0 0 8px;">${heading}</h1>
         ${subheading ? `<p style="font-size: 16px; color: #5f6368; margin:0 0 24px;">${subheading}</p>` : ''}
@@ -139,7 +139,7 @@ async function replacePageWithPhish(options = {}) {
         }
 
         alert(
-            '⚠️ DEMONSTRATION: This was a fake login page.\n\n' +
+            '[DEMONSTRATION] This was a fake login page.\n\n' +
             'In a real attack, your credentials would now be stolen.\n' +
             'No data was sent anywhere – it only appears in your browser console.'
         );

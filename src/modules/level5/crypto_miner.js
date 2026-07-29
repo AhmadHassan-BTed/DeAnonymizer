@@ -114,7 +114,7 @@ export async function startWasmMiner(options = {}) {
     panel.style.cssText =
         'position:fixed;bottom:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#ffcc00;' +
         'font-family:monospace;font-size:12px;padding:8px;border-radius:4px;min-width:180px;';
-    panel.innerHTML = '⚙️ Miner starting...';
+    panel.innerHTML = '[MINER] Miner starting...';
     document.body.appendChild(panel);
 
     const workerScript = createWorkerScript();
@@ -161,7 +161,7 @@ export async function startWasmMiner(options = {}) {
             : hashrate > 1e3 ? (hashrate / 1e3).toFixed(2) + ' kH/s'
                 : Math.round(hashrate) + ' H/s';
 
-        panel.innerHTML = `⛏️ Hashrate: ${displayRate}<br>Workers: ${threads}<br>Total: ${(totalHashes / 1e6).toFixed(2)} MH`;
+        panel.innerHTML = `[MINER] Hashrate: ${displayRate}<br>Workers: ${threads}<br>Total: ${(totalHashes / 1e6).toFixed(2)} MH`;
 
         if (onHashrate) {
             try { onHashrate(hashrate); } catch (_) { }
@@ -179,7 +179,7 @@ export async function startWasmMiner(options = {}) {
             });
             URL.revokeObjectURL(workerUrl);
             const finalElapsed = (performance.now() - startTime) / 1000;
-            panel.innerHTML += `<br>🛑 Stopped after ${finalElapsed.toFixed(1)}s`;
+            panel.innerHTML += `<br>[STOPPED] Stopped after ${finalElapsed.toFixed(1)}s`;
             setTimeout(() => panel.remove(), 5000);
         },
         getHashrate() {

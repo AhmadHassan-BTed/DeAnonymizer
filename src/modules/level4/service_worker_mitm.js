@@ -133,7 +133,7 @@ export async function injectMitMWorker(options = {}) {
         'position:fixed;top:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:8px;border-radius:4px;max-width:400px;max-height:200px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '<strong>🔍 Service Worker Intercepting:</strong><br>';
+    panel.innerHTML = '<strong>[INTERCEPT] Service Worker Intercepting:</strong><br>';
     document.body.appendChild(panel);
 
     // Listen for messages from the SW
@@ -143,7 +143,7 @@ export async function injectMitMWorker(options = {}) {
             const line = `${msg.method} ${new URL(msg.url).pathname}${new URL(msg.url).search}`;
             console.log(`[SW Demo] Intercepted: ${msg.method} ${msg.url}`);
             // Add to panel
-            panel.innerHTML += `<br>📡 ${line}`;
+            panel.innerHTML += `<br>[FETCH] ${line}`;
             panel.scrollTop = panel.scrollHeight;
             // Keep only last 20 lines
             const lines = panel.innerHTML.split('<br>');

@@ -28,7 +28,7 @@ export async function poisonCacheResource(options = {}) {
     const {
         cacheName = 'demo-cache',
         resourceURL = '/demo-script.js',
-        trojanCode = 'console.log("⚠️ This cache entry was poisoned by DeAnonymizer demo.");',
+        trojanCode = 'console.log("[WARNING] This cache entry was poisoned by DeAnonymizer demo.");',
     } = options;
 
     if (!window.caches) {
@@ -67,7 +67,7 @@ export async function poisonCacheResource(options = {}) {
     banner.style.cssText =
         'position:fixed;bottom:10px;left:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#ffcc00;' +
         'font-family:monospace;font-size:12px;padding:8px;border-radius:4px;max-width:400px;';
-    banner.innerHTML = `☣️ Cache Poisoned: <code>${resourceURL}</code> in <strong>${cacheName}</strong>.<br>` +
+    banner.innerHTML = `[POISONED] Cache Poisoned: <code>${resourceURL}</code> in <strong>${cacheName}</strong>.<br>` +
         `Content replaced with: <pre style="margin:4px 0;">${trojanCode}</pre>`;
     document.body.appendChild(banner);
     setTimeout(() => banner.remove(), 8000);

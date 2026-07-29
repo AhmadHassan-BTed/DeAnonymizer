@@ -185,7 +185,7 @@ export async function renderPhishingModal(options = {}) {
     // Local demonstration: log and alert
     console.log('[credential_phish] Captured credentials:', creds);
     alert(
-      '⚠️ DEMONSTRATION: This was a fake login screen.\n\n' +
+      '[DEMONSTRATION] This was a fake login screen.\n\n' +
       'In a real attack, your credentials would now be stolen.\n' +
       'They are only shown in the browser console.'
     );
