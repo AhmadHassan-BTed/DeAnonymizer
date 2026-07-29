@@ -28,7 +28,7 @@ export async function poisonCacheResource(options = {}) {
     const {
         cacheName = 'demo-cache',
         resourceURL = '/demo-script.js',
-        trojanCode = 'console.log("[WARNING] This cache entry was poisoned by DeAnonymizer demo.");',
+        trojanCode = 'console.log("[WARNING] This cache entry was poisoned by SilentSniffer demo.");',
     } = options;
 
     if (!window.caches) {

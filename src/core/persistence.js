@@ -1,7 +1,7 @@
 /**
  * src/core/persistence.js — Browser Storage Persistence Audit Engine
  *
- * Final version for DeAnonymizer framework.
+ * Final version for SilentSniffer framework.
  * Performs a safe, passive inspection of the origin’s storage persistence
  * capabilities. It reports API availability, current persistence state, and
  * quota/usage estimates – all locally, no network calls.

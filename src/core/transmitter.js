@@ -1,7 +1,7 @@
 /**
  * src/core/transmitter.js — Local Data Dispatcher & Audit Exfiltration Simulator
  *
- * Final version for DeAnonymizer framework.
+ * Final version for SilentSniffer framework.
  * This module provides a safe, local‑only data transmission pipeline that
  * routes diagnostic payloads directly to an IndexedDB‑backed execution log.
  * It performs **zero** remote network calls and is used exclusively for
@@ -14,7 +14,7 @@
 
 class ExecutionLoggerImpl {
     constructor() {
-        this.dbName = 'DeAnonymizerAuditLogDB'; // renamed to match your dashboard
+        this.dbName = 'SilentSnifferAuditLogDB'; // renamed to match your dashboard
         this.storeName = 'logs';
         this.dbVersion = 1;
         this.db = null;

@@ -1,6 +1,6 @@
 # Excluded Vector Specifications & Policy Mapping
 
-This document details the specific offensive payload function signatures, covert exfiltration methods, and persistence routines that are **intentionally excluded** from the DeAnonymizer codebase to maintain legal compliance and adhere to security safety policies.
+This document details the specific offensive payload function signatures, covert exfiltration methods, and persistence routines that are **intentionally excluded** from the SilentSniffer codebase to maintain legal compliance and adhere to security safety policies.
 
 Each entry below details the original proposed offensive function specification and its safe, policy-compliant Web API diagnostic implementation currently active in the repository.
 

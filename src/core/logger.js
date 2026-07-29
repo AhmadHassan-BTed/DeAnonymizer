@@ -3,7 +3,7 @@
  * Logs execution attempts and diagnostic results locally for developer audits.
  */
 export const ExecutionLogger = {
-    dbName: 'DeAnonymizerAuditLogDB',
+    dbName: 'SilentSnifferAuditLogDB',
     dbVersion: 1,
     db: null,
 
