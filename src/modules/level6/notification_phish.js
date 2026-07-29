@@ -1,18 +1,19 @@
 /**
- * Notification_Phish (Stub)
- * Level 6
- * Disabled per security policy.
+ * Pinpoint Module: Web Notification API Capability Audit
+ * Level 6: Social Engineering & Phishing
  */
 export default {
     id: 'notification_phish',
-    title: 'Notification_Phish',
+    title: 'Notification_API_Audit',
     level: 6,
-    info: 'Notification phishing module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits Notification API support and current origin notification permission state.",
+    steps: ["Check window.Notification existence.", "Read Notification.permission state."],
     run: async () => {
+        const supported = 'Notification' in window;
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            notificationApiSupported: supported,
+            permissionState: supported ? Notification.permission : 'unsupported',
+            maxActionsSupported: supported && Notification.maxActions ? Notification.maxActions : 0
         };
     }
 };

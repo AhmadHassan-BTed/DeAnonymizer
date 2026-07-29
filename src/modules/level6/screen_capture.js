@@ -1,18 +1,20 @@
 /**
- * Screen_Capture (Stub)
- * Level 6
- * Disabled per security policy.
+ * Pinpoint Module: Screen Capture API Support Audit
+ * Level 6: Social Engineering & Phishing
  */
 export default {
     id: 'screen_capture',
-    title: 'Screen_Capture',
+    title: 'Screen_Share_API_Audit',
     level: 6,
-    info: 'Screen capture module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits navigator.mediaDevices.getDisplayMedia support for screen sharing capabilities.",
+    steps: ["Check navigator.mediaDevices.getDisplayMedia support.", "Report display media API availability."],
     run: async () => {
+        const supported = navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia === 'function';
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            getDisplayMediaSupported: supported,
+            message: supported 
+                ? "Display Media (Screen Share) API is supported by this browser."
+                : "Display Media (Screen Share) API is not supported by this browser."
         };
     }
 };
