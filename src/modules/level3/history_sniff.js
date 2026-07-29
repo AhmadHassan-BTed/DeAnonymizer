@@ -144,19 +144,19 @@ export async function demoHistorySniff(options = {}) {
         'position:fixed;top:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.9);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:12px;border-radius:6px;max-width:450px;max-height:350px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '<strong>🔍 Testing browser history...</strong><br>';
+    panel.innerHTML = '<strong>[SEARCH] Testing browser history...</strong><br>';
     document.body.appendChild(panel);
 
     const results = await sniffVisitedURLs(options);
 
     // Build result HTML
-    let html = '<strong style="color:#f0f;">📖 History Sniff Results</strong><br><hr>';
+    let html = '<strong style="color:#f0f;">[HISTORY] History Sniff Results</strong><br><hr>';
     for (const [url, info] of Object.entries(results)) {
-        const icon = info.visited ? '🟢' : '🔴';
+        const icon = info.visited ? '[+]' : '[-]';
         html += `${icon} <strong>${url}:</strong> ${info.visited ? 'VISITED' : 'not visited'}` +
             ` (confidence ${info.confidence})<br>`;
     }
-    html += '<hr><span style="color:#ff0;">⚠️ In a real attack, this reveals browsing habits.</span>';
+    html += '<hr><span style="color:#ff0;">[WARNING] In a real attack, this reveals browsing habits.</span>';
     panel.innerHTML = html;
 
     // Log full data to console

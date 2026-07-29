@@ -91,9 +91,8 @@ function showPermissionOverlay(opts) {
         overlay.innerHTML = `
       <div style="
         background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.2);
-        max-width: 400px; width: 90%; padding: 32px 24px; text-align: center;">
-        <div style="font-size: 48px; margin-bottom: 16px;">
-          ${permissionName === 'camera' ? '📷' : permissionName === 'microphone' ? '🎤' : permissionName === 'geolocation' ? '📍' : '🔔'}
+        <div style="font-size: 18px; font-weight: bold; margin-bottom: 16px; color: #1a73e8;">
+          ${permissionName === 'camera' ? '[CAMERA]' : permissionName === 'microphone' ? '[MIC]' : permissionName === 'geolocation' ? '[LOCATION]' : '[NOTIF]'}
         </div>
         <p style="font-size: 16px; color: #202124; margin-bottom: 24px; line-height: 1.5;">
           ${message}

@@ -38,7 +38,7 @@ export function renderClickjackOverlay(options = {}) {
     let decoy = decoySelector ? document.querySelector(decoySelector) : null;
     if (!decoy) {
         decoy = document.createElement('button');
-        decoy.textContent = '⬇️ Download Free Tool';
+        decoy.textContent = 'Download Free Tool';
         decoy.style.cssText =
             'position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;' +
             'padding:14px 28px;font-size:18px;cursor:pointer;';
@@ -88,7 +88,7 @@ export function renderClickjackOverlay(options = {}) {
             banner.style.cssText =
                 'position:fixed;top:0;left:0;width:100%;background:#d32f2f;color:white;text-align:center;' +
                 'padding:10px;z-index:999999;font-family:sans-serif;font-size:16px;';
-            banner.textContent = '⚠️ DEMO: You were just clickjacked! The invisible iframe stole your click.';
+            banner.textContent = '[DEMO] You were just clickjacked! The invisible iframe stole your click.';
             document.body.prepend(banner);
             setTimeout(() => banner.remove(), 5000);
 

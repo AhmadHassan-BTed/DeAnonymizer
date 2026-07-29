@@ -131,7 +131,7 @@ export async function scanLocalhostTCP(options = {}) {
         'position:fixed;top:10px;left:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:8px;border-radius:4px;max-width:350px;max-height:300px;' +
         'overflow-y:auto;white-space:pre-wrap;';
-    panel.innerHTML = `🔍 Scanning ${host} ports...<br>`;
+    panel.innerHTML = `[SCAN] Scanning ${host} ports...<br>`;
     document.body.appendChild(panel);
 
     const results = [];
@@ -140,7 +140,7 @@ export async function scanLocalhostTCP(options = {}) {
         const result = await scanPort(host, port, timeout, attempts);
         results.push(result);
 
-        const line = `${result.open ? '🟢' : '🔴'} Port ${port}: ${result.open ? 'OPEN' : 'closed'} (confidence ${result.confidence})`;
+        const line = `${result.open ? '[+]' : '[-]'} Port ${port}: ${result.open ? 'OPEN' : 'closed'} (confidence ${result.confidence})`;
         panel.innerHTML += line + '<br>';
         panel.scrollTop = panel.scrollHeight;
         console.log('[port_scanner]', line);
@@ -151,7 +151,7 @@ export async function scanLocalhostTCP(options = {}) {
     }
 
     const openCount = results.filter(r => r.open).length;
-    panel.innerHTML += `<br>✅ Done. ${openCount} open port(s) detected.`;
+    panel.innerHTML += `<br>[DONE] Done. ${openCount} open port(s) detected.`;
     setTimeout(() => panel.remove(), 8000);
 
     return results;

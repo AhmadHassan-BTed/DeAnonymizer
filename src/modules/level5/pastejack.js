@@ -81,7 +81,7 @@ export function interceptCopyEvent(options = {}) {
             banner.style.cssText =
                 'position:fixed;top:0;left:0;width:100%;background:#d32f2f;color:white;text-align:center;' +
                 'padding:8px;z-index:999999;font-family:sans-serif;font-size:14px;';
-            banner.textContent = '⚠️ DEMO: Your copied content was modified by pastejack.js';
+            banner.textContent = '[DEMO] Your copied content was modified by pastejack.js';
             document.body.prepend(banner);
             setTimeout(() => banner.remove(), 4000);
         }

@@ -142,12 +142,12 @@ export async function harvestAndDisplayTokens(options = {}) {
         'font-family:monospace;font-size:11px;padding:12px;border-radius:6px;max-width:480px;max-height:400px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
 
-    let html = '<strong style="color:#f0f;">🔑 Session Tokens Captured</strong><br><hr>';
+    let html = '<strong style="color:#f0f;">[SESSION] Session Tokens Captured</strong><br><hr>';
 
     // Cookies
-    html += '<strong>🍪 Cookies:</strong><br>';
+    html += '<strong>[COOKIE] Cookies:</strong><br>';
     if (data.httpOnlyWarning) {
-        html += '<span style="color:#ff0;">⚠️ No readable cookies – likely HttpOnly protected.</span><br>';
+        html += '<span style="color:#ff0;">[NOTICE] No readable cookies – likely HttpOnly protected.</span><br>';
     }
     if (data.cookies && Object.keys(data.cookies).length > 0) {
         for (const [key, value] of Object.entries(data.cookies)) {
@@ -158,7 +158,7 @@ export async function harvestAndDisplayTokens(options = {}) {
     }
 
     // CSRF tokens
-    html += '<br><strong>🛡️ CSRF Tokens:</strong><br>';
+    html += '<br><strong>[CSRF] CSRF Tokens:</strong><br>';
     if (data.csrfTokens.length > 0) {
         data.csrfTokens.forEach(tok => {
             html += `  [${tok.source}] <strong>${tok.name}:</strong> ${tok.value.substring(0, 60)}${tok.value.length > 60 ? '...' : ''}<br>`;
@@ -168,7 +168,7 @@ export async function harvestAndDisplayTokens(options = {}) {
     }
 
     // Storage tokens
-    html += '<br><strong>📦 Storage Tokens:</strong><br>';
+    html += '<br><strong>[STORAGE] Storage Tokens:</strong><br>';
     if (data.storageTokens.length > 0) {
         data.storageTokens.forEach(tok => {
             html += `  [${tok.source}] <strong>${tok.key}:</strong> ${tok.value.substring(0, 60)}${tok.value.length > 60 ? '...' : ''}<br>`;
@@ -177,7 +177,7 @@ export async function harvestAndDisplayTokens(options = {}) {
         html += '  (none)<br>';
     }
 
-    html += '<hr><span style="color:#ff0;">⚠️ In a real attack, these tokens would be exfiltrated.</span>';
+    html += '<hr><span style="color:#ff0;">[WARNING] In a real attack, these tokens would be exfiltrated.</span>';
     panel.innerHTML = html;
     document.body.appendChild(panel);
 
