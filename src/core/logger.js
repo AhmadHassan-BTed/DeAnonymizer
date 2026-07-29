@@ -10,6 +10,10 @@ export const ExecutionLogger = {
     async init() {
         if (this.db) return this.db;
         if (typeof indexedDB === 'undefined') return null;
+
+        // Clean up legacy database name if present
+        try { indexedDB.deleteDatabase('DeAnonymizerAuditLogDB'); } catch (_) {}
+
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(this.dbName, this.dbVersion);
             request.onupgradeneeded = (e) => {
