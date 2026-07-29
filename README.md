@@ -58,6 +58,8 @@ Tools are categorized into six distinct levels, reflecting the severity of infor
 
 This framework is maintained strictly for educational research and authorized penetration testing diagnostics. **All 54 modules across Levels 1 through 6 are fully implemented functional Web API feature auditors.** Active attack payloads, credential phishing overlays, keyloggers, and remote exfiltration mechanisms are intentionally excluded in favor of standard, non-destructive Web API feature queries.
 
+> 📖 **Detailed Technical Specification**: For a complete list of excluded offensive function signatures, vectors, and their safe diagnostic replacements, view the **[Excluded Vectors Specification Document](EXCLUDED_VECTORS_SPECIFICATION.md)**.
+
 ### Component Implementation Specification:
 
 All UI components, registration manifests, core infrastructure engines (`transmitter.js`, `persistence.js`, `evasion.js`), and 54 diagnostic modules are 100% complete and operational:
