@@ -1,7 +1,6 @@
 {
   "name": "pinpoint-location-tracker",
   "version": "2.5.0",
-  "type": "module",
   "description": "Professional Geolocation Utility Library",
   "scripts": {
     "start": "npm run build:css && browser-sync start --server --files 'dist/*.css, *.html, src/*.js' --no-notify",
