@@ -23,16 +23,23 @@ export default {
             const onVoicesChanged = () => {
                 voices = window.speechSynthesis.getVoices();
                 window.speechSynthesis.removeEventListener('voiceschanged', onVoicesChanged);
+                if (window.speechSynthesis.onvoiceschanged === onVoicesChanged) {
+                    window.speechSynthesis.onvoiceschanged = null;
+                }
                 resolve(formatVoices(voices));
             };
 
             window.speechSynthesis.addEventListener('voiceschanged', onVoicesChanged);
+            window.speechSynthesis.onvoiceschanged = onVoicesChanged;
 
-            // Timeout fallback
+            // Timeout fallback (Chromium voice loading can take >1.5s on Linux)
             setTimeout(() => {
                 window.speechSynthesis.removeEventListener('voiceschanged', onVoicesChanged);
+                if (window.speechSynthesis.onvoiceschanged === onVoicesChanged) {
+                    window.speechSynthesis.onvoiceschanged = null;
+                }
                 resolve(formatVoices(window.speechSynthesis.getVoices()));
-            }, 1000);
+            }, 2500);
         });
     }
 };
