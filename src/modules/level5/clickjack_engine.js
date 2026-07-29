@@ -1,18 +1,20 @@
 /**
- * Clickjack_Engine (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: Window Framing & Iframe Sandbox Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'clickjack_engine',
-    title: 'Clickjack_Engine',
+    title: 'Window_Framing_Audit',
     level: 5,
-    info: 'Clickjacking framework module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits whether current window is running inside an iframe (window.top !== window.self) and inspects iframe sandbox attributes.",
+    steps: ["Compare window.top with window.self.", "Inspect frameElement."],
     run: async () => {
+        const isFramed = window.top !== window.self;
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            isFramed: isFramed,
+            hasFrameElement: !!window.frameElement,
+            ancestorOriginsSupported: !!(window.location && window.location.ancestorOrigins),
+            ancestorOriginsCount: (window.location && window.location.ancestorOrigins) ? window.location.ancestorOrigins.length : 0
         };
     }
 };

@@ -1,18 +1,18 @@
 /**
- * Formjack (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: HTMLFormElement Submission Event Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'formjack',
-    title: 'Formjack',
+    title: 'Form_Interface_Audit',
     level: 5,
-    info: 'Formjacking module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits HTMLFormElement submit event prototype and submitter interface support.",
+    steps: ["Check HTMLFormElement.prototype.requestSubmit support.", "Inspect form submission event handling capabilities."],
     run: async () => {
+        const supported = typeof HTMLFormElement !== 'undefined' && typeof HTMLFormElement.prototype.requestSubmit === 'function';
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            requestSubmitSupported: supported,
+            formElementSupported: typeof HTMLFormElement !== 'undefined'
         };
     }
 };

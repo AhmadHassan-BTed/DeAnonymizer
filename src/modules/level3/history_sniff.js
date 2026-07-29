@@ -1,18 +1,19 @@
 /**
- * History_Sniff (Stub)
- * Level 3
- * Disabled per security policy.
+ * Pinpoint Module: HTML5 History API Audit
+ * Level 3: Critical Intelligence
  */
 export default {
     id: 'history_sniff',
-    title: 'History_Sniff',
+    title: 'History_API_Audit',
     level: 3,
-    info: 'History sniffing module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits window.history stack length and pushState/replaceState feature support.",
+    steps: ["Check window.history.length.", "Inspect pushState availability."],
     run: async () => {
+        const supported = typeof window.history !== 'undefined' && typeof window.history.pushState === 'function';
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            historySupported: supported,
+            historyLength: window.history ? window.history.length : 0,
+            scrollRestorationSupported: window.history && 'scrollRestoration' in window.history
         };
     }
 };

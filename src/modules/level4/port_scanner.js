@@ -1,18 +1,18 @@
 /**
- * Port_Scanner (Stub)
- * Level 4
- * Disabled per security policy.
+ * Pinpoint Module: Web Sockets & Network Capability Audit
+ * Level 4: High-Fidelity HW Exploits
  */
 export default {
     id: 'port_scanner',
-    title: 'Port_Scanner',
+    title: 'Network_Sockets_Audit',
     level: 4,
-    info: 'Port scanner module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits window.WebSocket and fetch API support for network socket communication capabilities.",
+    steps: ["Check window.WebSocket support.", "Check window.fetch support."],
     run: async () => {
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            webSocketsSupported: typeof window.WebSocket !== 'undefined',
+            fetchSupported: typeof window.fetch !== 'undefined',
+            beaconSupported: typeof navigator.sendBeacon !== 'undefined'
         };
     }
 };

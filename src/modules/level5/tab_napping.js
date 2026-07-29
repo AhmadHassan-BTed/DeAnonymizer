@@ -1,18 +1,18 @@
 /**
- * Tab_Napping (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: Tab Visibility State Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'tab_napping',
-    title: 'Tab_Napping',
+    title: 'Page_Visibility_Audit',
     level: 5,
-    info: 'Tab napping module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits document.visibilityState and document.hidden API support.",
+    steps: ["Read document.visibilityState.", "Inspect document.hidden boolean."],
     run: async () => {
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            visibilityStateSupported: typeof document.visibilityState !== 'undefined',
+            currentVisibilityState: document.visibilityState || 'unknown',
+            isHidden: document.hidden || false
         };
     }
 };

@@ -1,18 +1,33 @@
 /**
- * ServiceWorker_MitM (Stub)
- * Level 4
- * Disabled per security policy.
+ * Pinpoint Module: Service Worker Capability Audit
+ * Level 4: High-Fidelity HW Exploits
  */
 export default {
     id: 'service_worker_mitm',
-    title: 'ServiceWorker_MitM',
+    title: 'Service_Worker_Audit',
     level: 4,
-    info: 'Service Worker MitM module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits navigator.serviceWorker support and active registration count for current origin.",
+    steps: ["Check navigator.serviceWorker API support.", "Query serviceWorker registrations."],
     run: async () => {
-        return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
-        };
+        if (!('serviceWorker' in navigator)) {
+            return {
+                supported: false,
+                message: "Service Worker API is not supported by this browser."
+            };
+        }
+
+        try {
+            const regs = await navigator.serviceWorker.getRegistrations();
+            return {
+                supported: true,
+                activeRegistrationCount: regs.length,
+                hasActiveController: !!navigator.serviceWorker.controller
+            };
+        } catch (e) {
+            return {
+                supported: true,
+                error: e.message
+            };
+        }
     }
 };
