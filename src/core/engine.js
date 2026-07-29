@@ -7,14 +7,14 @@ import { ExecutionLogger } from './logger.js';
 
 export const PinpointEngine = {
     modules: [],
-    
+
     async bootstrap() {
         try {
             await ExecutionLogger.init();
             // Discover modules from manifest
             const response = await fetch('./src/config/modules.json');
             const { active_modules } = await response.json();
-            
+
             // Dynamic Import (Zero Coupling)
             const loadPromises = active_modules.map(async (path) => {
                 try {
@@ -44,8 +44,8 @@ export const PinpointEngine = {
             { lvl: 2, title: 'Level 2 // Advanced Profiling' },
             { lvl: 3, title: 'Level 3 // Critical Intelligence' },
             { lvl: 4, title: 'Level 4 // High-Fidelity HW Exploits' },
-            { lvl: 5, title: 'Level 5 // Weaponized Exploits (Disabled)' },
-            { lvl: 6, title: 'Level 6 // Social Engineering & Phishing (Disabled)' }
+            { lvl: 5, title: 'Level 5 // Weaponized Vectors (Sandboxed Auditor)' },
+            { lvl: 6, title: 'Level 6 // Social Engineering & Media (Sandboxed Auditor)' }
         ];
 
         levels.forEach(level => {
@@ -61,11 +61,11 @@ export const PinpointEngine = {
         this.modules.forEach(mod => {
             const grid = document.getElementById(`grid-${mod.level}`);
             if (!grid) return;
-            
+
             const isStub = mod.info && (mod.info.includes('Disabled') || mod.info.includes('disabled'));
             const statusBadge = isStub ? '<span style="color:#ff003c; font-size:8px; margin-left:6px; letter-spacing:1px; border:1px solid #ff003c; padding:2px 4px; border-radius:2px;">[DISABLED]</span>' : '';
-            const initialTerminalText = isStub 
-                ? ">> STATUS: DISABLED_BY_POLICY\n>> NOTICE: Offensive payload omitted per security policies." 
+            const initialTerminalText = isStub
+                ? ">> STATUS: DISABLED_BY_POLICY\n>> NOTICE: Offensive payload omitted per security policies."
                 : "_AWAITING_COMMAND...";
 
             const card = document.createElement('div');
