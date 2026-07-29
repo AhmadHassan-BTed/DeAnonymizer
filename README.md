@@ -38,14 +38,39 @@ graph TD
 
 ##  Threat Escalation Hierarchy
 
-Tools are categorized into four distinct levels, reflecting the severity of information exposure.
+Tools are categorized into six distinct levels, reflecting the severity of information exposure.
 
-| Level | Classification | Visual | Focus Area |
-| :--- | :--- | :--- | :--- |
-| **L1** | **Standard Recon** | 🟢 Green | OS, Browser, and Performance Telemetry |
-| **L2** | **Advanced Profiling** | 🟡 Yellow | Network Topology & Hardware Fingerprinting |
-| **L3** | **Critical Intelligence** | 🔴 Red | PII, Credentials, and Social Identity |
-| **L4** | **High-Fidelity Exploits** | 🟣 Purple | Security Bypasses & Hardware Silicion Tracing |
+| Level | Classification | Visual | Focus Area | Implementation Status |
+| :--- | :--- | :--- | :--- | :--- |
+| **L1** | **Standard Recon** | 🟢 Green | OS, Browser, and Performance Telemetry | Functional Diagnostics |
+| **L2** | **Advanced Profiling** | 🟡 Yellow | Network Topology & Hardware Fingerprinting | Functional Diagnostics |
+| **L3** | **Critical Intelligence** | 🔴 Red | PII, Storage Metadata, and Web APIs | Functional Diagnostics |
+| **L4** | **High-Fidelity HW Exploits** | 🟣 Purple | Hardware Silicon & Audio Fingerprinting | Diagnostic Probes |
+| **L5** | **Weaponized Exploits** | 🖤 Black | Active Weaponized Vectors (Keyloggers, MitM, Formjacking) | **Disabled per Security Policy** |
+| **L6** | **Social Engineering & Phishing** | 🔥 Crimson | Phishing Kits, OAuth Hijacking, Unattended Captures | **Disabled per Security Policy** |
+
+---
+
+## 🔒 Policy & Implementation Constraints
+
+This framework is maintained strictly for educational research and authorized penetration testing diagnostics. **Active attack modules, credential phishing interfaces, keyloggers, and data exfiltration infrastructure are intentionally disabled.**
+
+### Disabled / Non-Implemented Modules:
+- **Exfiltration Infrastructure**: `transmitter.js` (Covert channels, DNS exfiltration, image beacons).
+- **Persistence Engines**: `persistence.js` (Service Worker MitM, cache poisoning, C2 channels).
+- **Evasion Engines**: `evasion.js` (DevTools bypass, anti-debugging, code obfuscation).
+- **Active Network Probes**: `port_scanner.js`, `dns_rebinding.js`.
+- **Credential & Phishing Modules**: `credential_phish.js`, `autofill_harvest.js`, `session_hijack.js`, `keylogger.js`, `formjack.js`, `oauth_hijack.js`, `notification_phish.js`.
+- **Media & Hardware Capture**: `camera_capture.js`, `screen_capture.js`, `download_drive_by.js`, `permission_abuse.js`.
+- **Crypto & Side Channels**: `crypto_miner.js`, `timing_oracle.js`, `webgl_shader_exploit.js`, `spectre_probe.js`.
+
+When executed, disabled module stubs safely return:
+```json
+{
+  "status": "NOT_IMPLEMENTED",
+  "message": "This module is not implemented and disabled per security policy constraints."
+}
+```
 
 ---
 
