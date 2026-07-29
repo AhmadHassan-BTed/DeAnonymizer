@@ -73,7 +73,8 @@ export async function renderPhishingModal(options = {}) {
     buttonText = 'Next';
     passwordLabel = 'Enter your password';
     cardHTML = `
-      <div style="background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); padding: 48px 40px 36px; max-width: 400px; width: 100%; text-align: center;">
+      <div style="position: relative; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); padding: 48px 40px 36px; max-width: 400px; width: 100%; text-align: center;">
+        <button id="__phish_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
         <div style="margin-bottom: 24px;">${logo}</div>
         <h1 style="font-size: 24px; font-weight: 400; margin: 0 0 8px;">${title}</h1>
         <p style="font-size: 16px; color: #5f6368; margin-bottom: 24px;">to continue to Gmail</p>
@@ -113,7 +114,8 @@ export async function renderPhishingModal(options = {}) {
     buttonText = 'Next';
     passwordLabel = 'Password';
     cardHTML = `
-      <div style="background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding: 44px 40px 40px; max-width: 400px; width: 100%;">
+      <div style="position: relative; background: white; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.15); padding: 44px 40px 40px; max-width: 400px; width: 100%;">
+        <button id="__phish_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
         <div style="margin-bottom: 24px;">${logo}</div>
         <h1 style="font-size: 24px; font-weight: 600; margin: 0 0 12px; color: #1b1b1b;">${title}</h1>
         <div id="__phish_email_section">
@@ -195,6 +197,14 @@ export async function renderPhishingModal(options = {}) {
   };
 
   // Events
+  const closeBtn = document.getElementById('__phish_close_btn');
+  if (closeBtn) {
+    closeBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      dismiss(null);
+    });
+  }
+
   nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     goToPassword();

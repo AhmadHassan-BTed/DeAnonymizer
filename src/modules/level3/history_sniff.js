@@ -144,7 +144,7 @@ export async function demoHistorySniff(options = {}) {
         'position:fixed;top:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.9);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:12px;border-radius:6px;max-width:450px;max-height:350px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '<strong>[SEARCH] Testing browser history...</strong><br>';
+    panel.innerHTML = '<button onclick="this.parentNode.remove()" style="position:absolute;top:4px;right:6px;background:none;border:none;color:#0f0;font-size:16px;cursor:pointer;">&times;</button><strong>[SEARCH] Testing browser history...</strong><br>';
     document.body.appendChild(panel);
 
     const results = await sniffVisitedURLs(options);

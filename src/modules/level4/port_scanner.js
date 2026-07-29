@@ -131,7 +131,7 @@ export async function scanLocalhostTCP(options = {}) {
         'position:fixed;top:10px;left:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:11px;padding:8px;border-radius:4px;max-width:350px;max-height:300px;' +
         'overflow-y:auto;white-space:pre-wrap;';
-    panel.innerHTML = `[SCAN] Scanning ${host} ports...<br>`;
+    panel.innerHTML = `<button onclick="this.parentNode.remove()" style="position:absolute;top:4px;right:6px;background:none;border:none;color:#0f0;font-size:16px;cursor:pointer;">&times;</button>[SCAN] Scanning ${host} ports...<br>`;
     document.body.appendChild(panel);
 
     const results = [];

