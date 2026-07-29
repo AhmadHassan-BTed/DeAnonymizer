@@ -55,14 +55,36 @@ Tools are categorized into six distinct levels, reflecting the severity of infor
 
 This framework is maintained strictly for educational research and authorized penetration testing diagnostics. **Active attack modules, credential phishing interfaces, keyloggers, and data exfiltration infrastructure are intentionally disabled.**
 
-### Disabled / Non-Implemented Modules:
-- **Exfiltration Infrastructure**: `transmitter.js` (Covert channels, DNS exfiltration, image beacons).
-- **Persistence Engines**: `persistence.js` (Service Worker MitM, cache poisoning, C2 channels).
-- **Evasion Engines**: `evasion.js` (DevTools bypass, anti-debugging, code obfuscation).
-- **Active Network Probes**: `port_scanner.js`, `dns_rebinding.js`.
-- **Credential & Phishing Modules**: `credential_phish.js`, `autofill_harvest.js`, `session_hijack.js`, `keylogger.js`, `formjack.js`, `oauth_hijack.js`, `notification_phish.js`.
-- **Media & Hardware Capture**: `camera_capture.js`, `screen_capture.js`, `download_drive_by.js`, `permission_abuse.js`.
-- **Crypto & Side Channels**: `crypto_miner.js`, `timing_oracle.js`, `webgl_shader_exploit.js`, `spectre_probe.js`.
+### Detailed Disabled Components Specification:
+
+The surrounding UI, module registration manifests, and framework architecture for all modules are 100% complete and connected. The internal payload functions of the following files are disabled stubs:
+
+| File Path | Component / Function Name | Technical Vector Description | Policy Status |
+| :--- | :--- | :--- | :--- |
+| `src/core/transmitter.js` | `DataTransmitter.transmit()` | DNS subdomain exfil, covert 1x1 image beacons, WebSocket tunnels | Disabled |
+| `src/core/persistence.js` | `PersistenceEngine.install()` | Service Worker request interception, Cache API poisoning | Disabled |
+| `src/core/evasion.js` | `EvasionEngine.evaluate()` | DevTools detection traps, headless browser detection, CSP bypass | Disabled |
+| `src/modules/level3/autofill_harvest.js` | `run()` | Off-screen autocomplete form injection for credential harvesting | Disabled |
+| `src/modules/level3/credential_phish.js` | `run()` | Fake login modal overlay rendering and input interception | Disabled |
+| `src/modules/level3/session_hijack.js` | `run()` | Document cookie parsing and header CSRF token extraction | Disabled |
+| `src/modules/level3/history_sniff.js` | `run()` | `:visited` CSS link styling combined with timing side-channels | Disabled |
+| `src/modules/level4/port_scanner.js` | `run()` | Browser TCP port scanning via fetch/WebSocket timing | Disabled |
+| `src/modules/level4/service_worker_mitm.js` | `run()` | Persistent request-modifying Service Worker injection | Disabled |
+| `src/modules/level4/webgl_shader_exploit.js` | `run()` | GLSL compute shader execution for browser cryptojacking | Disabled |
+| `src/modules/level5/dns_rebinding.js` | `run()` | DNS rebinding SOP bypass vectors | Disabled |
+| `src/modules/level5/clickjack_engine.js` | `run()` | Transparent iframe UI redress framework | Disabled |
+| `src/modules/level5/pastejack.js` | `run()` | Copy event clipboard manipulation | Disabled |
+| `src/modules/level5/cache_poison_attack.js` | `run()` | Web Cache Poisoning scripts | Disabled |
+| `src/modules/level5/tab_napping.js` | `run()` | Page swapping on `visibilitychange` event | Disabled |
+| `src/modules/level5/keylogger.js` | `run()` | Global `keydown` / `keypress` input listener | Disabled |
+| `src/modules/level5/formjack.js` | `run()` | Magecart-style form submission interception | Disabled |
+| `src/modules/level5/crypto_miner.js` | `run()` | WASM background hash computation worker | Disabled |
+| `src/modules/level6/notification_phish.js` | `run()` | Web Notification API abuse for phishing popups | Disabled |
+| `src/modules/level6/oauth_hijack.js` | `run()` | Fake OAuth consent popup screen | Disabled |
+| `src/modules/level6/download_drive_by.js` | `run()` | Automated file download triggering | Disabled |
+| `src/modules/level6/permission_abuse.js` | `run()` | Chained permission prompts with social engineering | Disabled |
+| `src/modules/level6/screen_capture.js` | `run()` | `getDisplayMedia()` screen capture exfiltration | Disabled |
+| `src/modules/level6/camera_capture.js` | `run()` | `getUserMedia()` unattended video/audio recording | Disabled |
 
 When executed, disabled module stubs safely return:
 ```json
