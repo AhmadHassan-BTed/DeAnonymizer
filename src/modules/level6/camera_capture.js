@@ -1,18 +1,30 @@
 /**
- * Camera_Capture (Stub)
- * Level 6
- * Disabled per security policy.
+ * Pinpoint Module: Media Capture API Support Audit
+ * Level 6: Social Engineering & Phishing
  */
 export default {
     id: 'camera_capture',
-    title: 'Camera_Capture',
+    title: 'Media_Devices_API_Audit',
     level: 6,
-    info: 'Camera capture module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits navigator.mediaDevices support and media track capability constraints.",
+    steps: ["Check navigator.mediaDevices.getUserMedia support.", "Inspect mediaDevices supported constraints."],
     run: async () => {
+        const supported = navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function';
+        let constraints = {};
+
+        if (navigator.mediaDevices && typeof navigator.mediaDevices.getSupportedConstraints === 'function') {
+            constraints = navigator.mediaDevices.getSupportedConstraints();
+        }
+
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            getUserMediaSupported: supported,
+            supportedConstraintsCount: Object.keys(constraints).length,
+            sampleConstraints: {
+                facingMode: !!constraints.facingMode,
+                echoCancellation: !!constraints.echoCancellation,
+                noiseSuppression: !!constraints.noiseSuppression,
+                sampleRate: !!constraints.sampleRate
+            }
         };
     }
 };
