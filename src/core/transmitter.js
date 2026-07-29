@@ -22,6 +22,10 @@ class ExecutionLoggerImpl {
     }
 
     async _initDB() {
+        if (typeof indexedDB === 'undefined') {
+            this.db = null;
+            return;
+        }
         return new Promise((resolve, reject) => {
             const request = indexedDB.open(this.dbName, this.dbVersion);
             request.onerror = () => {
