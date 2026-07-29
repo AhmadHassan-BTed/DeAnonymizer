@@ -1,7 +1,7 @@
 /**
  * src/core/evasion.js — Environment Inspection & Automation Auditor
  *
- * Final version for DeAnonymizer framework.
+ * Final version for SilentSniffer framework.
  * Performs passive checks for browser automation frameworks, headless
  * environments, and forensic artefacts. No debugger traps, CSP bypass,
  * or obfuscation – strictly read‑only heuristics.

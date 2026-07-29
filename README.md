@@ -1,6 +1,6 @@
 <div align="center">
 
-# DeAnonymizer
+# SilentSniffer
 ### *Educational Research & Web Security Diagnostic Sandbox*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-00ff41.svg?style=flat-square)](https://opensource.org/licenses/MIT)
@@ -8,21 +8,21 @@
 [![Educational Only](https://img.shields.io/badge/Use_Case-Educational_Research_Only-blue.svg?style=flat-square)](SECURITY.md)
 [![Threat Levels](https://img.shields.io/badge/Threat_Levels-1--6-ff003c.svg?style=flat-square)](#)
 [![Developer](https://img.shields.io/badge/Lead_Developer-Ahmad_Hassan_(B--Ted)-9d00ff.svg?style=flat-square)](https://github.com/AhmadHassan-BTed)
-[![Live Demo](https://img.shields.io/badge/View_Live-DeAnonymizer-00ff41?style=for-the-badge&logo=target)](https://AhmadHassan-BTed.github.io/Pinpoint-Location-Tracker/)
+[![Live Demo](https://img.shields.io/badge/View_Live-SilentSniffer-00ff41?style=for-the-badge&logo=target)](https://AhmadHassan-BTed.github.io/Pinpoint-Location-Tracker/)
 
 **Engineered by Ahmad Hassan (B-Ted)**
 
 ---
 
 > [!NOTE]
-> **Browser Privacy & Awareness Notice**: Modern web applications operate under the widespread assumption that browsing is inherently safe, private, and isolated by default. **DeAnonymizer** is built to challenge this false sense of security. Operating strictly as a self-contained, client-side sandbox, **zero data is exported or transmitted anywhere**. Instead, it offers a real-time, visual demonstration of just how much ambient device state, hardware telemetry, and behavioral data can slip out of a user's control without explicit consent—simply because modern browser specifications permit it by default.
+> **Browser Privacy & Awareness Notice**: Modern web applications operate under the widespread assumption that browsing is inherently safe, private, and isolated by default. **SilentSniffer** is built to challenge this false sense of security. Operating strictly as a self-contained, client-side sandbox, **zero data is exported or transmitted anywhere**. Instead, it offers a real-time, visual demonstration of just how much ambient device state, hardware telemetry, and behavioral data can slip out of a user's control without explicit consent—simply because modern browser specifications permit it by default.
 </div>
 
-## 💡 The Philosophy Behind DeAnonymizer
+## 💡 The Philosophy Behind SilentSniffer
 
 Most internet users assume that unless they explicitly click "Allow" on a browser permission prompt, their session remains private and contained. In reality, standard Web APIs grant websites extensive access to hardware characteristics, timing vectors, network topologies, and sensor behaviors silently under the hood.
 
-**DeAnonymizer** was created as an educational eye-opener. By running diagnostic and demonstration modules in a completely safe, local-only sandbox environment, users can visually grasp the true surface area of web exposure permitted by modern browsers—without any risk of data leaving their device.
+**SilentSniffer** was created as an educational eye-opener. By running diagnostic and demonstration modules in a completely safe, local-only sandbox environment, users can visually grasp the true surface area of web exposure permitted by modern browsers—without any risk of data leaving their device.
 
 ---
 
@@ -112,7 +112,7 @@ All UI components, registration manifests, core infrastructure engines (`transmi
 | `L6` | `screen_capture.js` | Display Media API support check | **Local Auditor** |
 | `L6` | `camera_capture.js` | UserMedia API constraint check | **Local Auditor** |
 
-All diagnostic queries execute strictly in the local browser context and store execution data in an isolated local IndexedDB (`DeAnonymizerAuditLogDB`). No data ever leaves the user's browser.
+All diagnostic queries execute strictly in the local browser context and store execution data in an isolated local IndexedDB (`SilentSnifferAuditLogDB`). No data ever leaves the user's browser.
 
 ---
 
@@ -141,7 +141,7 @@ sequenceDiagram
 ## 📁 Repository Structure
 
 ```text
-DeAnonymizer/
+SilentSniffer/
 ├── src/
 │   ├── core/
 │   │   ├── engine.js         # Framework Orchestrator
@@ -171,7 +171,7 @@ Every module adheres to a unified interface to ensure clean execution within the
 
 ```javascript
 /**
- * DeAnonymizer Module Template
+ * SilentSniffer Module Template
  */
 export default {
     id: 'unique_identifier',
