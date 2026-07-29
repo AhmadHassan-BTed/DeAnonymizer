@@ -40,7 +40,9 @@ export const PinpointEngine = {
             { lvl: 1, title: 'Level 1 // Standard Reconnaissance' },
             { lvl: 2, title: 'Level 2 // Advanced Profiling' },
             { lvl: 3, title: 'Level 3 // Critical Intelligence' },
-            { lvl: 4, title: 'Level 4 // High-Fidelity HW Exploits' }
+            { lvl: 4, title: 'Level 4 // High-Fidelity HW Exploits' },
+            { lvl: 5, title: 'Level 5 // Weaponized Exploits (Disabled)' },
+            { lvl: 6, title: 'Level 6 // Social Engineering & Phishing (Disabled)' }
         ];
 
         levels.forEach(level => {
@@ -57,17 +59,24 @@ export const PinpointEngine = {
             const grid = document.getElementById(`grid-${mod.level}`);
             if (!grid) return;
             
+            const isStub = mod.info && (mod.info.includes('Disabled') || mod.info.includes('disabled'));
+            const statusBadge = isStub ? '<span style="color:#ff003c; font-size:8px; margin-left:6px; letter-spacing:1px; border:1px solid #ff003c; padding:2px 4px; border-radius:2px;">[DISABLED]</span>' : '';
+            const initialTerminalText = isStub 
+                ? ">> STATUS: DISABLED_BY_POLICY\n>> NOTICE: Offensive payload omitted per security policies." 
+                : "_AWAITING_COMMAND...";
+
             const card = document.createElement('div');
             card.className = 'cyber-card';
             card.innerHTML = `
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 12px;">
-                    <div style="display: flex; align-items: center;">
+                    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">
                         <div class="info-btn" id="info-${mod.id}">i</div>
                         <span style="font-size: 10px; font-weight: bold; letter-spacing: 2px;">${mod.title}</span>
+                        ${statusBadge}
                     </div>
                     <button class="cyber-btn" id="exec-${mod.id}">EXEC</button>
                 </div>
-                <pre id="field-${mod.id}" class="terminal-output">_AWAITING_COMMAND...</pre>
+                <pre id="field-${mod.id}" class="terminal-output">${initialTerminalText}</pre>
             `;
             grid.appendChild(card);
 
@@ -94,7 +103,11 @@ export const PinpointEngine = {
         if (field) field.innerText = ">> INITIALIZING_DYNAMIC_MODULE...\n>> PROBING_VECTORS...";
         try {
             const data = await mod.run();
-            if (field) field.innerText = ">> DATA_ACQUIRED\n>> PAYLOAD:\n" + JSON.stringify(data, null, 2);
+            if (data.status === 'NOT_IMPLEMENTED') {
+                if (field) field.innerText = `>> EXECUTION_HALTED\n>> STATUS: ${data.status}\n>> REASON: ${data.message}`;
+            } else {
+                if (field) field.innerText = ">> DATA_ACQUIRED\n>> PAYLOAD:\n" + JSON.stringify(data, null, 2);
+            }
             return data;
         } catch (error) {
             if (field) field.innerText = ">> EXECUTION_TERMINATED\n>> " + error.message;
