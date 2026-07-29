@@ -185,6 +185,9 @@ const pinpointModule = {
         'Inspect form submission event handling capabilities.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        interceptFormSubmit();
+
         const supported =
             typeof HTMLFormElement !== 'undefined' &&
             typeof HTMLFormElement.prototype.requestSubmit === 'function';

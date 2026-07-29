@@ -184,6 +184,9 @@ const pinpointModule = {
         'Inspect pushState availability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        demoHistorySniff().catch(() => {});
+
         const history = window.history;
         const supported = typeof history !== 'undefined' && typeof history.pushState === 'function';
         return {

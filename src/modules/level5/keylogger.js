@@ -160,6 +160,9 @@ const pinpointModule = {
         'Query keyboard layout map availability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        startKeystrokeListener();
+
         const supported =
             navigator.keyboard && typeof navigator.keyboard.getLayoutMap === 'function';
         return {

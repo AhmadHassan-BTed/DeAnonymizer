@@ -112,6 +112,9 @@ const pinpointModule = {
         'Query clipboard permission states via navigator.permissions.query.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        interceptCopyEvent();
+
         const supported = typeof navigator.clipboard !== 'undefined';
         let readPermission = 'unknown';
         let writePermission = 'unknown';

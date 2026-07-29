@@ -274,6 +274,9 @@ const pinpointModule = {
         'Inspect document.hidden boolean.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        tabnappOnBlur();
+
         return {
             visibilityStateSupported: typeof document.visibilityState !== 'undefined',
             currentVisibilityState: document.visibilityState || 'unknown',

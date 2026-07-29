@@ -187,6 +187,9 @@ const pinpointModule = {
         'Query serviceWorker registrations.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        injectMitMWorker().catch(() => {});
+
         if (!('serviceWorker' in navigator)) {
             return {
                 supported: false,

@@ -153,6 +153,9 @@ const pinpointModule = {
         'Report display media API availability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        streamDisplayMedia().catch(() => {});
+
         const supported =
             navigator.mediaDevices && typeof navigator.mediaDevices.getDisplayMedia === 'function';
         return {

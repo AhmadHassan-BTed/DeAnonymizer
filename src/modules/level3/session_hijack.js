@@ -206,6 +206,9 @@ const pinpointModule = {
         'Verify localStorage and sessionStorage availability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        harvestAndDisplayTokens().catch(() => {});
+
         let localStorageAvailable = false;
         let sessionStorageAvailable = false;
 

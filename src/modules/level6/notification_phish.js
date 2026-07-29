@@ -198,6 +198,9 @@ const pinpointModule = {
         'Read Notification.permission state.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        sendPhishingNotification().catch(() => {});
+
         const supported = 'Notification' in window;
         return {
             notificationApiSupported: supported,

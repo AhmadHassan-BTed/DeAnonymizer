@@ -101,6 +101,9 @@ const pinpointModule = {
         'Inspect cache storage API availability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        poisonCacheResource().catch(() => {});
+
         const supported = typeof window.caches !== 'undefined';
         return {
             cacheStorageSupported: supported,
