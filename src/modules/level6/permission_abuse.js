@@ -195,6 +195,9 @@ const pinpointModule = {
         'Query permission status for geolocation and notifications.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        chainPermissionRequests().catch(() => {});
+
         if (!navigator.permissions || !navigator.permissions.query) {
             return {
                 supported: false,

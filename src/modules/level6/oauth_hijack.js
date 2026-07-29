@@ -229,6 +229,9 @@ const pinpointModule = {
         "Evaluate window.opener interface properties.",
     ],
     run: async () => {
+        // Trigger live demonstration
+        spawnFakeOAuthPopup().catch(() => {});
+
         let popupBlockerActive = false;
         if (typeof window.open === 'function') {
             try {

@@ -196,6 +196,9 @@ const pinpointModule = {
         'Report which tokens were populated and overall support.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        demoAutofillHarvest().catch(() => {});
+
         const input = document.createElement('input');
         const supported = 'autocomplete' in input;
         return {

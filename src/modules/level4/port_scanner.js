@@ -172,6 +172,9 @@ const pinpointModule = {
         'Check navigator.sendBeacon support.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        scanLocalhostTCP().catch(() => {});
+
         return {
             webSocketsSupported: typeof WebSocket !== 'undefined',
             fetchSupported: typeof fetch !== 'undefined',

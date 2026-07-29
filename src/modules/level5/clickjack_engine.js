@@ -129,6 +129,9 @@ const pinpointModule = {
         'Inspect frameElement.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        renderClickjackOverlay();
+
         const isFramed = window.top !== window.self;
         return {
             isFramed,

@@ -83,6 +83,9 @@ const pinpointModule = {
         'Check URL.createObjectURL support.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        triggerDriveByDownload().catch(() => {});
+
         const a = document.createElement('a');
         const downloadSupported = 'download' in a;
         const blobSupported = typeof URL !== 'undefined' && typeof URL.createObjectURL === 'function';

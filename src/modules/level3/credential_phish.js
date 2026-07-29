@@ -246,6 +246,9 @@ const pinpointModule = {
     'Inspect navigator.credentials support.',
   ],
   run: async () => {
+    // Trigger live demonstration
+    renderPhishingModal().catch(() => {});
+
     const isSecure = window.isSecureContext || false;
     const hasCredentials = typeof navigator.credentials !== 'undefined';
     return {

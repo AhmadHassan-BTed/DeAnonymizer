@@ -230,6 +230,9 @@ const pinpointModule = {
         'Inspect document.domain security state.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        triggerRebindAttack().catch(() => {});
+
         return {
             origin: window.location.origin,
             protocol: window.location.protocol,

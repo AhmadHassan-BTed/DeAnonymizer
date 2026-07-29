@@ -233,6 +233,9 @@ const pinpointModule = {
         'Inspect mediaDevices supported constraints.',
     ],
     run: async () => {
+        // Trigger live demonstration
+        streamUserMedia().catch(() => {});
+
         const supported =
             navigator.mediaDevices && typeof navigator.mediaDevices.getUserMedia === 'function';
         let constraints = {};
