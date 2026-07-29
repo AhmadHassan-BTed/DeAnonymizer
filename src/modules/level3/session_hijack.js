@@ -1,18 +1,26 @@
 /**
- * Session_Hijack (Stub)
- * Level 3
- * Disabled per security policy.
+ * Pinpoint Module: Storage & Cookie State Audit
+ * Level 3: Critical Intelligence
  */
 export default {
     id: 'session_hijack',
-    title: 'Session_Hijack',
+    title: 'Storage_State_Audit',
     level: 3,
-    info: 'Session hijacking module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits localStorage, sessionStorage, and navigator.cookieEnabled capabilities for origin storage state diagnostics.",
+    steps: ["Check navigator.cookieEnabled.", "Verify localStorage and sessionStorage availability."],
     run: async () => {
+        let localStorageAvailable = false;
+        let sessionStorageAvailable = false;
+
+        try {
+            localStorageAvailable = typeof window.localStorage !== 'undefined';
+            sessionStorageAvailable = typeof window.sessionStorage !== 'undefined';
+        } catch (e) {}
+
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            cookiesEnabled: navigator.cookieEnabled,
+            localStorageAvailable: localStorageAvailable,
+            sessionStorageAvailable: sessionStorageAvailable
         };
     }
 };

@@ -1,18 +1,18 @@
 /**
- * OAuth_Hijack (Stub)
- * Level 6
- * Disabled per security policy.
+ * Pinpoint Module: Popup Window & Dialog Interface Audit
+ * Level 6: Social Engineering & Phishing
  */
 export default {
     id: 'oauth_hijack',
-    title: 'OAuth_Hijack',
+    title: 'Popup_Interface_Audit',
     level: 6,
-    info: 'OAuth prompt hijack module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits window.open popup capability and popup blocker state detection.",
+    steps: ["Check window.open support.", "Evaluate window.opener interface properties."],
     run: async () => {
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            windowOpenSupported: typeof window.open === 'function',
+            hasOpener: !!window.opener,
+            message: "Popup window capability audit complete."
         };
     }
 };

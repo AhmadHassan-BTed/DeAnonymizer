@@ -1,18 +1,20 @@
 /**
- * DNS_Rebinding (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: Origin Security Boundary Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'dns_rebinding',
-    title: 'DNS_Rebinding',
+    title: 'Origin_Boundary_Audit',
     level: 5,
-    info: 'DNS rebinding module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits current window.location origin and document.domain security isolation status.",
+    steps: ["Read window.location.origin.", "Inspect document.domain security state."],
     run: async () => {
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            origin: window.location.origin,
+            protocol: window.location.protocol,
+            hostname: window.location.hostname,
+            port: window.location.port || (window.location.protocol === 'https:' ? '443' : '80'),
+            domain: document.domain
         };
     }
 };

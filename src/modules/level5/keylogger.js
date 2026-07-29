@@ -1,18 +1,20 @@
 /**
- * Keylogger (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: Keyboard & KeyboardLayout API Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'keylogger',
-    title: 'Keylogger',
+    title: 'Keyboard_API_Audit',
     level: 5,
-    info: 'Browser keylogger module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits navigator.keyboard support and KeyboardMap layout API availability.",
+    steps: ["Check navigator.keyboard support.", "Query keyboard layout map availability."],
     run: async () => {
+        const supported = navigator.keyboard && typeof navigator.keyboard.getLayoutMap === 'function';
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            keyboardLayoutApiSupported: supported,
+            message: supported 
+                ? "Keyboard Layout API is supported by this browser."
+                : "Keyboard Layout API is not supported."
         };
     }
 };

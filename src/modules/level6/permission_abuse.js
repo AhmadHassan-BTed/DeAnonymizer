@@ -1,18 +1,36 @@
 /**
- * Permission_Abuse (Stub)
- * Level 6
- * Disabled per security policy.
+ * Pinpoint Module: Permissions API State Audit
+ * Level 6: Social Engineering & Phishing
  */
 export default {
     id: 'permission_abuse',
-    title: 'Permission_Abuse',
+    title: 'Permissions_API_Audit',
     level: 6,
-    info: 'Permission abuse chain module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits navigator.permissions.query state for geolocation, notifications, and camera sensors.",
+    steps: ["Check navigator.permissions.", "Query permission status for geolocation and notifications."],
     run: async () => {
+        if (!navigator.permissions || !navigator.permissions.query) {
+            return {
+                supported: false,
+                message: "Permissions API is not supported by this browser."
+            };
+        }
+
+        const results = {};
+        const targets = ['geolocation', 'notifications', 'camera', 'microphone'];
+
+        await Promise.all(targets.map(async (name) => {
+            try {
+                const status = await navigator.permissions.query({ name });
+                results[name] = status.state;
+            } catch (e) {
+                results[name] = 'not_queriable';
+            }
+        }));
+
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            supported: true,
+            permissionsState: results
         };
     }
 };

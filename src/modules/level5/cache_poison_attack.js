@@ -1,18 +1,20 @@
 /**
- * Cache_Poison_Attack (Stub)
- * Level 5
- * Disabled per security policy.
+ * Pinpoint Module: Cache API & Service Worker Cache Audit
+ * Level 5: Weaponized Exploits
  */
 export default {
     id: 'cache_poison_attack',
-    title: 'Cache_Poison_Attack',
+    title: 'Cache_Policy_Audit',
     level: 5,
-    info: 'Cache poisoning attack module (Disabled).',
-    steps: ['Module disabled per safety policies.'],
+    info: "Audits CacheStorage availability and verifies HTTP response caching capabilities.",
+    steps: ["Check window.caches support.", "Inspect cache storage API availability."],
     run: async () => {
+        const supported = typeof window.caches !== 'undefined';
         return {
-            status: 'NOT_IMPLEMENTED',
-            message: 'This module is not implemented and disabled per security policy constraints.'
+            cacheStorageSupported: supported,
+            message: supported 
+                ? "CacheStorage API is supported by this origin."
+                : "CacheStorage API is not supported."
         };
     }
 };
