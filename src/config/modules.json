@@ -50,6 +50,9 @@
         "src/modules/level6/screen_capture.js",
         "src/modules/level6/camera_capture.js",
         "src/modules/level1/display_metrics.js",
-        "src/modules/level2/network_info_audit.js"
+        "src/modules/level2/network_info_audit.js",
+        "src/modules/level2/xr_device_probe.js",
+        "src/modules/level4/codecs_audit.js",
+        "src/modules/level4/worker_channel_audit.js"
     ]
 }

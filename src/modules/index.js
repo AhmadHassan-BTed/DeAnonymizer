@@ -53,6 +53,9 @@ import screen_capture from '../../src/modules/level6/screen_capture.js';
 import camera_capture from '../../src/modules/level6/camera_capture.js';
 import display_metrics from '../../src/modules/level1/display_metrics.js';
 import network_info_audit from '../../src/modules/level2/network_info_audit.js';
+import xr_device_probe from '../../src/modules/level2/xr_device_probe.js';
+import codecs_audit from '../../src/modules/level4/codecs_audit.js';
+import worker_channel_audit from '../../src/modules/level4/worker_channel_audit.js';
 
 export const activeModules = [
   env_telemetry,
@@ -105,5 +108,8 @@ export const activeModules = [
   screen_capture,
   camera_capture,
   display_metrics,
-  network_info_audit
+  network_info_audit,
+  xr_device_probe,
+  codecs_audit,
+  worker_channel_audit
 ];
