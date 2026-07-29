@@ -94,6 +94,24 @@
         .m-lvl-3 .m-accent { color: var(--cyber-red); }
         .m-lvl-4 { border-color: var(--cyber-purple) !important; }
         .m-lvl-4 .m-accent { color: var(--cyber-purple); }
+
+        .lvl-5 { border-color: rgba(255, 255, 255, 0.2); color: #aaa; }
+        .lvl-5 .threat-header { border-color: #666; background: rgba(255, 255, 255, 0.05); color: #ccc; }
+        .lvl-5 .cyber-card { border-color: rgba(255, 255, 255, 0.15); }
+        .lvl-5 .cyber-btn, .lvl-5 .info-btn { border-color: #888; color: #888; }
+        .lvl-5 .cyber-btn:hover, .lvl-5 .info-btn:hover { background: #888; color: #000; }
+        .lvl-5 .terminal-output { color: #888; }
+        .m-lvl-5 { border-color: #888 !important; }
+        .m-lvl-5 .m-accent { color: #aaa; }
+
+        .lvl-6 { border-color: rgba(220, 20, 60, 0.2); color: #dc143c; }
+        .lvl-6 .threat-header { border-color: #dc143c; background: rgba(220, 20, 60, 0.05); color: #dc143c; }
+        .lvl-6 .cyber-card { border-color: rgba(220, 20, 60, 0.15); }
+        .lvl-6 .cyber-btn, .lvl-6 .info-btn { border-color: #dc143c; color: #dc143c; }
+        .lvl-6 .cyber-btn:hover, .lvl-6 .info-btn:hover { background: #dc143c; color: #fff; }
+        .lvl-6 .terminal-output { color: #dc143c; }
+        .m-lvl-6 { border-color: #dc143c !important; }
+        .m-lvl-6 .m-accent { color: #dc143c; }
     </style>
 </head>
 <body>
@@ -110,7 +128,10 @@
             <h1 style="margin:0; letter-spacing: 10px; font-size: 1.8rem; font-weight: 700;">DeAnonymizer</h1>
             <span style="font-size: 10px; opacity: 0.5;">POWERED BY AHMAD HASSAN (B-TED) // SESSION_v3.3</span>
         </div>
-        <a href="index.html" class="cyber-btn" style="border-color: var(--cyber-green); color: var(--cyber-green);">EXIT</a>
+        <div style="display: flex; gap: 15px;">
+            <button id="exec-all-btn" class="cyber-btn" style="border-color: var(--cyber-yellow); color: var(--cyber-yellow);">EXEC ALL MODULES</button>
+            <a href="index.html" class="cyber-btn" style="border-color: var(--cyber-green); color: var(--cyber-green);">EXIT</a>
+        </div>
     </header>
 
     <div id="sections-container"></div>
@@ -120,7 +141,9 @@
         window.closeModal = () => { document.getElementById('modal-overlay').style.display = 'none'; };
         
         // BOOTSTRAP THE FRAMEWORK
-        PinpointEngine.bootstrap();
+        await PinpointEngine.bootstrap();
+
+        document.getElementById('exec-all-btn').onclick = () => PinpointEngine.runAll();
     </script>
 </body>
 </html>
