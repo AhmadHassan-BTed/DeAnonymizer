@@ -104,15 +104,38 @@
         .m-lvl-5 { border-color: #888 !important; }
         .m-lvl-5 .m-accent { color: #aaa; }
 
+        @keyframes burningFire {
+            0% {
+                box-shadow: 0 0 10px rgba(255, 0, 60, 0.4), 0 0 20px rgba(255, 60, 0, 0.2);
+                border-color: #ff003c;
+            }
+            50% {
+                box-shadow: 0 0 25px rgba(255, 60, 0, 0.7), 0 0 35px rgba(255, 0, 60, 0.6);
+                border-color: #ff3300;
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(255, 0, 60, 0.4), 0 0 20px rgba(255, 60, 0, 0.2);
+                border-color: #ff003c;
+            }
+        }
+
         .lvl-6 { border-color: rgba(230, 0, 0, 0.4); color: #ff1a40; }
-        .lvl-6 .threat-header { border-color: #ff003c; background: linear-gradient(90deg, rgba(230, 0, 0, 0.25), rgba(255, 0, 60, 0.05)); color: #ff1a40; box-shadow: 0 0 15px rgba(255, 0, 60, 0.25); text-shadow: 0 0 8px rgba(255, 0, 60, 0.6); }
+        .lvl-6 .threat-header {
+            border-color: #ff003c;
+            background: linear-gradient(90deg, rgba(230, 0, 0, 0.3), rgba(255, 60, 0, 0.15), rgba(230, 0, 0, 0.3));
+            color: #ff1a40;
+            text-shadow: 0 0 10px #ff003c, 0 0 20px #ff3300;
+            animation: burningFire 2.5s infinite ease-in-out;
+        }
         .lvl-6 .cyber-card { border-color: rgba(255, 0, 60, 0.25); background: #070102; }
-        .lvl-6 .cyber-card:hover { border-color: #ff003c; box-shadow: 0 0 20px rgba(255, 0, 60, 0.3); }
+        .lvl-6 .cyber-card:hover {
+            animation: burningFire 1.5s infinite ease-in-out;
+        }
         .lvl-6 .cyber-btn, .lvl-6 .info-btn { border-color: #ff003c; color: #ff1a40; }
-        .lvl-6 .cyber-btn:hover, .lvl-6 .info-btn:hover { background: #ff003c; color: #fff; box-shadow: 0 0 12px #ff003c; }
+        .lvl-6 .cyber-btn:hover, .lvl-6 .info-btn:hover { background: #ff003c; color: #fff; box-shadow: 0 0 15px #ff003c, 0 0 25px #ff3300; }
         .lvl-6 .terminal-output { color: #ff3355; }
-        .m-lvl-6 { border-color: #ff003c !important; box-shadow: 0 0 35px rgba(255, 0, 60, 0.4); }
-        .m-lvl-6 .m-accent { color: #ff1a40; }
+        .m-lvl-6 { border-color: #ff003c !important; animation: burningFire 2s infinite ease-in-out; }
+        .m-lvl-6 .m-accent { color: #ff1a40; text-shadow: 0 0 8px #ff003c; }
     </style>
 </head>
 <body>
