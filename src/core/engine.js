@@ -35,6 +35,7 @@ export const PinpointEngine = {
     },
 
     render() {
+        if (typeof document === 'undefined') return;
         const container = document.getElementById('sections-container');
         if (!container) return;
         container.innerHTML = ''; // Clear existing
