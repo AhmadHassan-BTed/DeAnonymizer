@@ -6,7 +6,7 @@ export default {
     id: 'social',
     title: 'Identity_Trace',
     level: 3,
-    info: "Detects active social platform logins for de-anonymization.",
+    info: "Detects active social platform logins for profile identification.",
     steps: ["Detect sessions via XS-Leaks.", "Map social ecosystem."],
     run: async () => {
         const platforms = [
