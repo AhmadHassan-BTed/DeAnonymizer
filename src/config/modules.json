@@ -48,6 +48,8 @@
         "src/modules/level6/download_drive_by.js",
         "src/modules/level6/permission_abuse.js",
         "src/modules/level6/screen_capture.js",
-        "src/modules/level6/camera_capture.js"
+        "src/modules/level6/camera_capture.js",
+        "src/modules/level1/display_metrics.js",
+        "src/modules/level2/network_info_audit.js"
     ]
 }
