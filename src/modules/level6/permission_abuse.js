@@ -90,7 +90,9 @@ function showPermissionOverlay(opts) {
 
         overlay.innerHTML = `
       <div style="
-        background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        position: relative; background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.2);
+        max-width: 400px; width: 90%; padding: 32px 24px; text-align: center;">
+        <button id="__perm_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
         <div style="font-size: 18px; font-weight: bold; margin-bottom: 16px; color: #1a73e8;">
           ${permissionName === 'camera' ? '[CAMERA]' : permissionName === 'microphone' ? '[MIC]' : permissionName === 'geolocation' ? '[LOCATION]' : '[NOTIF]'}
         </div>
@@ -108,11 +110,13 @@ function showPermissionOverlay(opts) {
         document.body.appendChild(overlay);
 
         const okBtn = document.getElementById('__perm_overlay_ok');
+        const closeBtn = document.getElementById('__perm_close_btn');
         const removeOverlay = () => {
             if (overlay.parentNode) overlay.remove();
             resolve();
         };
         okBtn.addEventListener('click', removeOverlay);
+        if (closeBtn) closeBtn.addEventListener('click', removeOverlay);
 
         if (timeout > 0) {
             setTimeout(() => {

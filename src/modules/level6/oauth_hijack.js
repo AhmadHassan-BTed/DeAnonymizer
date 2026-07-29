@@ -71,10 +71,11 @@ export async function spawnFakeOAuthPopup(options = {}) {
     function buildConsentHTML() {
         return `
       <div style="
-        font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        position: relative; font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         max-width: 440px; width: 100%; margin: 0 auto; padding: 48px 40px 36px;
         background: white; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.12);
         text-align: center;">
+        <button id="__oauth_close_btn" aria-label="Close" style="position: absolute; top: 12px; right: 16px; background: none; border: none; font-size: 24px; color: #5f6368; cursor: pointer; line-height: 1; z-index: 10;">&times;</button>
         <div style="margin-bottom: 24px;">
           ${customLogo || `<div style="font-size: 32px; font-weight: 500; color: ${color};">${logo}</div>`}
         </div>
@@ -120,6 +121,7 @@ export async function spawnFakeOAuthPopup(options = {}) {
 
             const allowBtn = document.getElementById('__oauth_allow_btn');
             const cancelBtn = document.getElementById('__oauth_cancel_btn');
+            const closeBtn = document.getElementById('__oauth_close_btn');
 
             const handle = (action) => {
                 const data = { provider, action };
@@ -129,6 +131,7 @@ export async function spawnFakeOAuthPopup(options = {}) {
                 resolve(data);
             };
 
+            if (closeBtn) closeBtn.addEventListener('click', () => handle('dismiss'));
             allowBtn.addEventListener('click', () => handle('allow'));
             cancelBtn.addEventListener('click', () => handle('cancel'));
             overlay.addEventListener('click', (e) => {

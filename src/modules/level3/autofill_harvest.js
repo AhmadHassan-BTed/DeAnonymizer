@@ -157,7 +157,7 @@ export async function demoAutofillHarvest(options = {}) {
         'position:fixed;top:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#0f0;' +
         'font-family:monospace;font-size:12px;padding:12px;border-radius:6px;max-width:400px;max-height:350px;' +
         'overflow-y:auto;white-space:pre-wrap;word-break:break-all;';
-    panel.innerHTML = '<strong>[WAITING] Waiting for browser autofill...</strong><br>';
+    panel.innerHTML = '<button onclick="this.parentNode.remove()" style="position:absolute;top:4px;right:6px;background:none;border:none;color:#0f0;font-size:16px;cursor:pointer;">&times;</button><strong>[WAITING] Waiting for browser autofill...</strong><br>';
     document.body.appendChild(panel);
 
     const result = await harvestAutofillData({

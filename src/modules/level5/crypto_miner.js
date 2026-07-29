@@ -114,7 +114,7 @@ export async function startWasmMiner(options = {}) {
     panel.style.cssText =
         'position:fixed;bottom:10px;right:10px;z-index:2147483645;background:rgba(0,0,0,0.85);color:#ffcc00;' +
         'font-family:monospace;font-size:12px;padding:8px;border-radius:4px;min-width:180px;';
-    panel.innerHTML = '[MINER] Miner starting...';
+    panel.innerHTML = '<button onclick="this.parentNode.remove()" style="position:absolute;top:4px;right:6px;background:none;border:none;color:#ffcc00;font-size:16px;cursor:pointer;">&times;</button>[MINER] Miner starting...';
     document.body.appendChild(panel);
 
     const workerScript = createWorkerScript();

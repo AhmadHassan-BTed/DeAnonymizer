@@ -57,6 +57,7 @@ export function startKeystrokeListener(options = {}) {
             'position:fixed;bottom:0;left:0;width:100%;max-height:120px;overflow-y:auto;' +
             'background:rgba(0,0,0,0.85);color:#0f0;font-family:monospace;font-size:12px;' +
             'padding:6px;z-index:2147483645;white-space:pre-wrap;word-break:break-all;';
+        panel.innerHTML = '<button onclick="this.parentNode.remove()" style="position:absolute;top:2px;right:6px;background:none;border:none;color:#0f0;font-size:16px;cursor:pointer;">&times;</button>';
         document.body.appendChild(panel);
     }
 
