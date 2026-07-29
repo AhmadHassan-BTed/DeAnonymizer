@@ -56,46 +56,53 @@ Tools are categorized into six distinct levels, reflecting the severity of infor
 
 ## 🔒 Policy & Implementation Constraints
 
-This framework is maintained strictly for educational research and authorized penetration testing diagnostics. **Active attack modules, credential phishing interfaces, keyloggers, and data exfiltration infrastructure are intentionally disabled.**
+This framework is maintained strictly for educational research and authorized penetration testing diagnostics. **All 54 modules across Levels 1 through 6 are fully implemented functional Web API feature auditors.** Active attack payloads, credential phishing overlays, keyloggers, and remote exfiltration mechanisms are intentionally excluded in favor of standard, non-destructive Web API feature queries.
 
-### Detailed Disabled Components Specification:
+### Component Implementation Specification:
 
-The surrounding UI, module registration manifests, and framework architecture for all modules are 100% complete and connected. The internal payload functions of the following files are disabled stubs:
+All UI components, registration manifests, core infrastructure engines (`transmitter.js`, `persistence.js`, `evasion.js`), and 54 diagnostic modules are 100% complete and operational:
 
-| File Path | Component / Function Name | Technical Vector Description | Policy Status |
+| Level | Component / Module File | Diagnostic Focus | Implementation Status |
 | :--- | :--- | :--- | :--- |
-| `src/core/transmitter.js` | `DataTransmitter.transmit()` | DNS subdomain exfil, covert 1x1 image beacons, WebSocket tunnels | Disabled |
-| `src/core/persistence.js` | `PersistenceEngine.install()` | Service Worker request interception, Cache API poisoning | Disabled |
-| `src/core/evasion.js` | `EvasionEngine.evaluate()` | DevTools detection traps, headless browser detection, CSP bypass | Disabled |
-| `src/modules/level3/autofill_harvest.js` | `run()` | Off-screen autocomplete form injection for credential harvesting | Disabled |
-| `src/modules/level3/credential_phish.js` | `run()` | Fake login modal overlay rendering and input interception | Disabled |
-| `src/modules/level3/session_hijack.js` | `run()` | Document cookie parsing and header CSRF token extraction | Disabled |
-| `src/modules/level3/history_sniff.js` | `run()` | `:visited` CSS link styling combined with timing side-channels | Disabled |
-| `src/modules/level4/port_scanner.js` | `run()` | Browser TCP port scanning via fetch/WebSocket timing | Disabled |
-| `src/modules/level4/service_worker_mitm.js` | `run()` | Persistent request-modifying Service Worker injection | Disabled |
-| `src/modules/level4/webgl_shader_exploit.js` | `run()` | GLSL compute shader execution for browser cryptojacking | Disabled |
-| `src/modules/level5/dns_rebinding.js` | `run()` | DNS rebinding SOP bypass vectors | Disabled |
-| `src/modules/level5/clickjack_engine.js` | `run()` | Transparent iframe UI redress framework | Disabled |
-| `src/modules/level5/pastejack.js` | `run()` | Copy event clipboard manipulation | Disabled |
-| `src/modules/level5/cache_poison_attack.js` | `run()` | Web Cache Poisoning scripts | Disabled |
-| `src/modules/level5/tab_napping.js` | `run()` | Page swapping on `visibilitychange` event | Disabled |
-| `src/modules/level5/keylogger.js` | `run()` | Global `keydown` / `keypress` input listener | Disabled |
-| `src/modules/level5/formjack.js` | `run()` | Magecart-style form submission interception | Disabled |
-| `src/modules/level5/crypto_miner.js` | `run()` | WASM background hash computation worker | Disabled |
-| `src/modules/level6/notification_phish.js` | `run()` | Web Notification API abuse for phishing popups | Disabled |
-| `src/modules/level6/oauth_hijack.js` | `run()` | Fake OAuth consent popup screen | Disabled |
-| `src/modules/level6/download_drive_by.js` | `run()` | Automated file download triggering | Disabled |
-| `src/modules/level6/permission_abuse.js` | `run()` | Chained permission prompts with social engineering | Disabled |
-| `src/modules/level6/screen_capture.js` | `run()` | `getDisplayMedia()` screen capture exfiltration | Disabled |
-| `src/modules/level6/camera_capture.js` | `run()` | `getUserMedia()` unattended video/audio recording | Disabled |
+| **Core** | `src/core/transmitter.js` | Local IndexedDB audit dispatch | **Functional Auditor** |
+| **Core** | `src/core/persistence.js` | Storage Persistence API check | **Functional Auditor** |
+| **Core** | `src/core/evasion.js` | Automation indicator detection | **Functional Auditor** |
+| **L1** | `protocol_handler_scan.js` | Protocol Handler API audit | **Functional Auditor** |
+| **L1** | `display_metrics.js` | Color depth & accessibility queries | **Functional Auditor** |
+| **L2** | `dns_prefetch_scan.js` | DNS prefetch & timing entry audit | **Functional Auditor** |
+| **L2** | `bluetooth_probe.js` | Web Bluetooth API availability | **Functional Auditor** |
+| **L2** | `usb_probe.js` | WebUSB device authorization audit | **Functional Auditor** |
+| **L2** | `network_info_audit.js` | NetworkInformation API audit | **Functional Auditor** |
+| **L2** | `xr_device_probe.js` | WebXR Device API audit | **Functional Auditor** |
+| **L3** | `autofill_harvest.js` | HTML5 autocomplete attribute check | **Functional Auditor** |
+| `L3` | `credential_phish.js` | Secure context & Credential API check | **Functional Auditor** |
+| `L3` | `session_hijack.js` | Storage state & cookie enabled check | **Functional Auditor** |
+| `L3` | `history_sniff.js` | History API stack & scroll state | **Functional Auditor** |
+| `L3` | `indexeddb_raid.js` | Origin IndexedDB database list | **Functional Auditor** |
+| `L3` | `cache_exfil.js` | Cache Storage bucket inventory | **Functional Auditor** |
+| `L4` | `port_scanner.js` | WebSockets, Fetch & Beacon check | **Functional Auditor** |
+| `L4` | `service_worker_mitm.js` | ServiceWorker registration audit | **Functional Auditor** |
+| `L4` | `webgl_shader_exploit.js` | GLSL shader precision bits query | **Functional Auditor** |
+| `L4` | `timing_oracle.js` | Precision timer & isolation audit | **Functional Auditor** |
+| `L4` | `spectre_probe.js` | COOP/COEP & SharedArrayBuffer check | **Functional Auditor** |
+| `L4` | `codecs_audit.js` | WebCodecs API support audit | **Functional Auditor** |
+| `L4` | `worker_channel_audit.js` | Worker channel messaging audit | **Functional Auditor** |
+| `L5` | `dns_rebinding.js` | Origin & document.domain boundary | **Functional Auditor** |
+| `L5` | `clickjack_engine.js` | Window framing state (`top !== self`) | **Functional Auditor** |
+| `L5` | `pastejack.js` | Clipboard API permissions query | **Functional Auditor** |
+| `L5` | `cache_poison_attack.js` | CacheStorage API origin check | **Functional Auditor** |
+| `L5` | `tab_napping.js` | Page Visibility API status | **Functional Auditor** |
+| `L5` | `keylogger.js` | Keyboard Layout API query | **Functional Auditor** |
+| `L5` | `formjack.js` | HTMLFormElement `requestSubmit` check | **Functional Auditor** |
+| `L5` | `crypto_miner.js` | WebAssembly validation & core count | **Functional Auditor** |
+| `L6` | `notification_phish.js` | Notification API permission state | **Functional Auditor** |
+| `L6` | `oauth_hijack.js` | Window popup interface check | **Functional Auditor** |
+| `L6` | `download_drive_by.js` | Anchor `download` attribute check | **Functional Auditor** |
+| `L6` | `permission_abuse.js` | Multi-sensor Permissions API query | **Functional Auditor** |
+| `L6` | `screen_capture.js` | Display Media API support check | **Functional Auditor** |
+| `L6` | `camera_capture.js` | UserMedia API constraint check | **Functional Auditor** |
 
-When executed, disabled module stubs safely return:
-```json
-{
-  "status": "NOT_IMPLEMENTED",
-  "message": "This module is not implemented and disabled per security policy constraints."
-}
-```
+All diagnostic queries execute safely in the local browser context and log execution data to an isolated local IndexedDB (`DeAnonymizerAuditLogDB`).
 
 ---
 
