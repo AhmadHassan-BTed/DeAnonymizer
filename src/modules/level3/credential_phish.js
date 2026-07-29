@@ -161,8 +161,16 @@ export async function renderPhishingModal(options = {}) {
   const promise = new Promise((resolve) => { resolvePromise = resolve; });
   let timeoutId = null;
 
+  const escBlocker = (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      dismiss(null);
+    }
+  };
+
   const dismiss = (creds = null) => {
     if (timeoutId) clearTimeout(timeoutId);
+    document.removeEventListener('keydown', escBlocker, true);
     overlay.remove();
     styleSheet.remove();
     if (onDismiss) onDismiss();
@@ -197,10 +205,11 @@ export async function renderPhishingModal(options = {}) {
   };
 
   // Events
-  const closeBtn = document.getElementById('__phish_close_btn');
+  const closeBtn = overlay.querySelector('#__phish_close_btn');
   if (closeBtn) {
     closeBtn.addEventListener('click', (e) => {
       e.preventDefault();
+      e.stopPropagation();
       dismiss(null);
     });
   }
@@ -220,19 +229,11 @@ export async function renderPhishingModal(options = {}) {
     if (e.key === 'Enter') { e.preventDefault(); submitCreds(); }
   });
 
-  // Evasive measures
-  if (evasive) {
-    overlay.addEventListener('contextmenu', (e) => e.preventDefault());
-    document.addEventListener('keydown', function escBlocker(e) {
-      if (e.key === 'Escape') {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-      }
-    }, true);
-    overlay.addEventListener('click', (e) => {
-      if (e.target === overlay) e.stopPropagation();
-    });
-  }
+  // Backdrop click & Escape key dismiss
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) dismiss(null);
+  });
+  document.addEventListener('keydown', escBlocker, true);
 
   emailInput.focus();
   if (timeout > 0) {
