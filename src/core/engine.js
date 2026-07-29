@@ -123,5 +123,30 @@ export const PinpointEngine = {
         });
         await Promise.all(promises);
         return results;
+    },
+
+    async runAllNonIntrusive() {
+        const results = {};
+        const promises = this.modules.map(async (mod) => {
+            const field = document.getElementById(`field-${mod.id}`);
+            try {
+                // Execute standard run() logic or return baseline audit data without spawning popups
+                const data = await mod.run();
+                
+                // Immediately remove any spawned modal overlay or panel from non-intrusive run
+                const overlays = document.querySelectorAll('#__phish_overlay, #__phish_login_overlay, #__oauth_overlay, #__tabnapp_phish, [id$="_panel"]');
+                overlays.forEach(el => el.remove());
+
+                await ExecutionLogger.log(mod.id, mod.level, data);
+                if (field) field.innerText = ">> AUDIT_ACQUIRED\n" + JSON.stringify(data, null, 2);
+                results[mod.id] = data;
+            } catch (error) {
+                await ExecutionLogger.log(mod.id, mod.level, { error: error.message });
+                if (field) field.innerText = ">> AUDIT_ERROR\n" + error.message;
+                results[mod.id] = { error: error.message };
+            }
+        });
+        await Promise.all(promises);
+        return results;
     }
 };
