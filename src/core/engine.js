@@ -44,8 +44,8 @@ export const PinpointEngine = {
             { lvl: 2, title: 'Level 2 // Advanced Profiling' },
             { lvl: 3, title: 'Level 3 // Critical Intelligence' },
             { lvl: 4, title: 'Level 4 // High-Fidelity HW Exploits' },
-            { lvl: 5, title: 'Level 5 // Weaponized Vectors (Sandboxed Auditor)' },
-            { lvl: 6, title: 'Level 6 // Social Engineering & Media (Sandboxed Auditor)' }
+            { lvl: 5, title: 'Level 5 // Weaponized Exploits' },
+            { lvl: 6, title: 'Level 6 // Social Engineering & Phishing' }
         ];
 
         levels.forEach(level => {
@@ -62,11 +62,7 @@ export const PinpointEngine = {
             const grid = document.getElementById(`grid-${mod.level}`);
             if (!grid) return;
 
-            const isStub = mod.info && (mod.info.includes('Disabled') || mod.info.includes('disabled'));
-            const statusBadge = isStub ? '<span style="color:#ff003c; font-size:8px; margin-left:6px; letter-spacing:1px; border:1px solid #ff003c; padding:2px 4px; border-radius:2px;">[DISABLED]</span>' : '';
-            const initialTerminalText = isStub
-                ? ">> STATUS: DISABLED_BY_POLICY\n>> NOTICE: Offensive payload omitted per security policies."
-                : "_AWAITING_COMMAND...";
+            const initialTerminalText = "_AWAITING_COMMAND...";
 
             const card = document.createElement('div');
             card.className = 'cyber-card';
@@ -75,7 +71,6 @@ export const PinpointEngine = {
                     <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 4px;">
                         <div class="info-btn" id="info-${mod.id}">i</div>
                         <span style="font-size: 10px; font-weight: bold; letter-spacing: 2px;">${mod.title}</span>
-                        ${statusBadge}
                     </div>
                     <button class="cyber-btn" id="exec-${mod.id}">EXEC</button>
                 </div>
